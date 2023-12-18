@@ -82,9 +82,9 @@ if($_SERVER['HTTP_HOST'] == 'localhost')
 }else
 {
 	$hostname = 'localhost';
-	$username = 'a1666q4e_assist_health_database';
-	$password = 'PW#EKSOkeO2x';
-	$database = 'a1666q4e_assist_health_database';
+	$username = 'a1666q4e_as_test';
+	$password = '[{G5eBz%8xih';
+	$database = 'a1666q4e_as_test';
 }
 
 
