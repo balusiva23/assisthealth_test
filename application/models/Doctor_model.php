@@ -478,7 +478,7 @@ class Doctor_model extends CI_Model {
     //18/12/23
 function make_query($filters)
 {
-    $query = "SELECT * FROM Internal_doctors WHERE isActive = '1' ";
+    $query = "SELECT * FROM internal_doctors WHERE isActive = '1' ";
     $conditions = [];
 
     foreach ($filters as $filter) {
