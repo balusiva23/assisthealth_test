@@ -1,0 +1,46 @@
+// Primary Care Physician section
+$physician_name = $this->input->post('physician_name');
+$physician_no = $this->input->post('physician_no');
+
+// Previous Medical Conditions section
+$medical_conditions = $this->input->post('medical_conditions');
+$medical_condition_dates = $this->input->post('medical_condition_date');
+$treatment_received = $this->input->post('treatment_received');
+
+// Surgeries or Procedures section
+$surgeries = $this->input->post('surgeries');
+$surgeries_dates = $this->input->post('surgeries_date');
+$surgeon_names = $this->input->post('Surgeon');
+
+// Allergies section
+$medications = $this->input->post('medications');
+$food_allergies = $this->input->post('food');
+$other_allergies = $this->input->post('other');
+
+// Current Medications section
+$medication_names = $this->input->post('medication_name');
+$dosages = $this->input->post('medication_dosage');
+$frequencies = $this->input->post('medication_frequency');
+
+// Family Medical History section
+$family_medical_conditions = $this->input->post('family_medical_history');
+$relationship_to_patient = $this->input->post('relationship_to_patient');
+
+// Immunization History section
+$vaccinations = $this->input->post('vaccination');
+
+// Previous Medical Test Results section
+$medical_test_results = $this->input->post('medical_test');
+
+// Current Symptoms or Concerns section
+$symptoms = $this->input->post('symptom');
+$concerns = $this->input->post('concerns');
+
+// Lifestyle Habits section
+$smoking = $this->input->post('smoking');
+$alcohol = $this->input->post('alcohol');
+$exercise_habits = $this->input->post('exercise_habits');
+
+// Health Insurance Information section
+$insurance_provider = $this->input->post('insurance_provider');
+$policy_number = $this->input->post('policy_no');

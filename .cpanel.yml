@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home4/a1666q4e/public_html/demoblr.in/ps2
+    - /bin/cp -R * $DEPLOYPATH
+    
