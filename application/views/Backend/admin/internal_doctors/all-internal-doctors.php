@@ -54,7 +54,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                         <div class="form-group row">
+                         <div class=" row">
                                            
                   <!--      <div class="col-md-2">
                           <label class="control-label">Doctors <span class="required"> </span></label>
@@ -130,7 +130,7 @@
                              </div>-->
 
 
-                             <div class="col-md-2">
+                             <div class="form-group col-md-2">
                             <label class="control-label">Doctors <span class="required"> </span></label>
                             <select class="form-control input-height search name" name="name" id="name" required>
                                 <option value="">Select...</option>
@@ -142,7 +142,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class=" form-group col-md-2">
                             <label class="control-label">Speciality <span class="required"> </span></label>
                             <select class="form-control input-height search speciality" name="speciality" id="speciality" required>
                                 <option value="">Select...</option>
@@ -153,7 +153,7 @@
                                 <?php } ?>
                             </select>
                         </div>  
-                        <div class="col-md-2">
+                        <div class="form-group col-md-2">
                             <label class="control-label">Hospital <span class="required"> </span></label>
                             <select class="form-control input-height search hospital" name="hospital" id="hospital" required>
                                 <option value="">Select...</option>
@@ -165,7 +165,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="form-group col-md-2">
                             <label class="control-label">Timings <span class="required"> </span></label>
                             <select class="form-control input-height search timing" name="timing" id="timing" required>
                                 <option value="">Select...</option>
@@ -180,7 +180,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="form-group col-md-2">
                             <label class="control-label">Fees <span class="required"> </span></label>
                             <select class="form-control input-height search fees" name="fees" id="fees" required>
                                 <option value="">Select...</option>
