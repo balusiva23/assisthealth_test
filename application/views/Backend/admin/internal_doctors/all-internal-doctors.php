@@ -693,7 +693,7 @@ $(document).ready(function () {
     // Assuming your select elements have IDs: 'name', 'speciality', 'timings', 'fees'
     $('#name, #speciality,#hospital, #timing, #fees').change(function () {
       // Remove selected options in other dropdowns
-        $('#name, #speciality, #hospital, #timing, #fees').not(this).val('');
+     //   $('#name, #speciality, #hospital, #timing, #fees').not(this).val('');
         filter_data(1);
     });
 

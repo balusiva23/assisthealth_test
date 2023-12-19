@@ -492,11 +492,14 @@ function make_query($filters)
         }
     }
 
-    if (!empty($conditions)) {
-        $query .= " AND " . implode(" AND ", $conditions);
+    // if (!empty($conditions)) {
+    //     $query .= " AND " . implode(" AND ", $conditions);
+    // }
+     if (!empty($conditions)) {
+        $query .= " AND " . implode(" OR ", $conditions);
     }
 
-   // print_r($query);
+    //print_r($query);
 
     return $query;
 }
@@ -506,15 +509,26 @@ function make_query($filters)
     {
         $query = $this->make_query($filters);
         $query .= " LIMIT $start, $limit";
-
+        // print_r($query);
         $data = $this->db->query($query);
         $output = '';
 
         if ($data->num_rows() > 0) {
             foreach ($data->result() as $doctor) {
+                // min-width: 530px;min-height: 365px;
+          $intro = $doctor->address;
+
+            // Split the string into an array of words
+            $intro_words = preg_split('/\s+/', $intro);
+
+            // Get the subset of words up to the specified limit
+            $limitedAddress = implode(' ', array_slice($intro_words, 0, 10));
+
+            // Output the result
+           // echo $limitedAddress;
                 $output .= '
                     <div class="col-md-4">
-                        <div class="card" style="min-width: 530px;min-height: 365px;">
+                        <div class="card" style="">
                             <div class="card-body no-padding">
                                 <div class="doctor-profile">
                                     <img src="' . base_url() . '/assets/uploads/internal_doctors/' . $doctor->profile_picture . '" class="doctor-pic" alt="">
@@ -522,7 +536,7 @@ function make_query($filters)
                                         <div class="doctor-name">' . $doctor->name . '</div>
                                         <div class="name-center">' . $doctor->speciality . '</div>
                                     </div>
-                                    <p>' . $doctor->address . '<br /></p>
+                                    <p>' . $limitedAddress . '<br /></p>
                                     <div>
                                         <p><i class="fa fa-phone"></i><a href="tel:' . $doctor->contact_number . '"> ' . $doctor->contact_number . '</a></p>
                                     </div>
