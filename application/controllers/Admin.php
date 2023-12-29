@@ -3792,7 +3792,7 @@ public function update_admin()
 
             $config = array(
                 'file_name' => $new_file_name,
-                'upload_path' => "./assets/uploads/doctor_profile",
+                'upload_path' => "./assets/uploads/internal_doctors",
                 'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
                 'overwrite' => False,
                 'max_size' => "50720000"
@@ -3920,7 +3920,8 @@ public function update_admin()
 		            echo validation_errors();
 		            // Handle validation errors
 		        } else {
-		       
+		        
+		        //print_r($_FILES['file_url']['name']);die();
 
 			     if($_FILES['file_url']['name']){
 	            $file_name = $_FILES['file_url']['name'];
@@ -3962,7 +3963,7 @@ public function update_admin()
 				    'timing' => $timing,
 				    'fees' => $fees,
 				    'contact_number' => $number,
-				    'profile_picture' => $fileUrl,  //new
+				    'profile_picture' => $img_url,  //new
 				    'clinic_name' => $clinic_name,
 				    'clinic_address' => $clinic_address,
 				    'clinic_timing' => $clinic_timing,
