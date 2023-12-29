@@ -11,6 +11,11 @@
     <title>Admin Panel</title>
     <!-- css -->
      <?php $this->load->view('Backend/admin/admin-temp/link-css'); ?> 
+
+
+     <!-- 28-12-23 -->
+      <link href="<?php echo base_url(); ?>assets/select2/select2.min.css" rel="stylesheet" type="text/css" />   
+    <link href="<?php echo base_url(); ?>assets/select2/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />  
 </head>
 <!-- END HEAD -->
 
@@ -69,7 +74,7 @@
                                                    <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <select class="form-control input-height" name="parent_member"  id="parent_member">
+                                                    <select class="form-control input-height search" name="parent_member"  id="parent_member">
                                                         <option value="">Select...</option>
                                                         <!-- <option value="Member1">Member 1</option>
                                                         <option value="Member2">Member 2</option> -->
@@ -657,6 +662,18 @@ $(document).ready(function() {
             });
         });
     });
+</script>
+
+     <!--select2-->
+
+    <script src="<?php echo base_url(); ?>assets/select2/select2.min.js"type="text/javascript"></script>
+    <script>
+        //New 28-12-23
+
+      $(".search").select2({
+          theme:"bootstrap"
+      });
+
 </script>
 
 </html>

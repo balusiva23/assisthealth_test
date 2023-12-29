@@ -31,7 +31,7 @@
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
                                 <div class="page-title">Add
-                                    Internal Doctors</div>
+                                    Empanelled Doctors</div>
                             </div>
 
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card card-box">
                                 <div class="card-head">
-                                    <header>Add Internal Doctors</header>
+                                    <header>Add Empanelled Doctors</header>
 
 
                                 </div>
@@ -92,12 +92,12 @@
                                                 </div>
                                             </div>
                                                  <div class="form-group row">
-                                                <label class="control-label col-md-3"> Specialized In 
+                                                <label class="control-label col-md-3"> Specialised In 
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="specializedIn" id="specializedIn" data-required="1"
-                                                        placeholder="Enter  Specialized In " class="form-control input-height" required />
+                                                        placeholder="Enter  Specialised In " class="form-control input-height" required />
                                                 </div>
                                             </div>  
                                             <div class="form-group row">
@@ -110,7 +110,16 @@
                                                 </div>
                                             </div>  
                                              <div class="form-group row">
-                                                <label class="control-label col-md-3"> Hospital 
+                                                <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
+                                                <div class="col-md-5" style="text-align: center;">
+                                                          <span  style="font-weight: bold;"> Hospital 
+                                                    
+                                                </span>
+                                             
+                                                </div>
+                                            </div>  
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> Name 
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
@@ -121,17 +130,36 @@
 
                                 
                                             <div class="form-group row">
-                                                <label class="control-label col-md-3"> Clinic Address 
+                                                <label class="control-label col-md-3">  Address 
                                                 </label>
                                                 <div class="col-md-5">
                                                     <textarea name="address" class="form-control-textarea"
-                                                        placeholder="Clinic Address" rows="5"></textarea>
+                                                        placeholder=" Address" rows="2"></textarea>
                                                 </div>
                                             </div>
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3"> Area Name 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="hospital_area" id="hospital_area" data-required="1"
+                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> City
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="hospital_city" id="hospital_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
+                                            
                                           
                                          
                                            <div class="form-group row">
-                                                <label class="control-label col-md-3"> Hospital Consultation Timings 
+                                                <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
@@ -148,27 +176,75 @@
                                                         placeholder="Enter  Consultation Fees " class="form-control input-height" required />
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-group row">
-                                                <label class="control-label col-md-3">Contact Number
+                                           <!-- clinic -->
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
+                                                <div class="col-md-5" style="text-align: center;">
+                                                          <span  style="font-weight: bold;"> Clinic 
+                                                    
+                                                </span>
+                                             
+                                                </div>
+                                            </div>  
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> Name 
                                                     <span class="required"> * </span>
                                                 </label>
-                                                 <div class=" col-md-5">
-                                                      <div class="input-group ">
-                                                          <div class="input-group-append">
-                                                               <span class="input-group-text" style="padding:11px ;">
-                                                               +91
-                                                             </span>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="clinic_name" id="clinic_name" data-required="1"
+                                                        placeholder="Enter  Clinic " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
 
+                                
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">  Address 
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <textarea name="clinic_address" class="form-control-textarea"
+                                                        placeholder=" Address" rows="2"></textarea>
+                                                </div>
+                                            </div>
 
-                                                   <input name="number" id="number" type="number"  
-                                                        class="form-control input-height" placeholder="Contact Number" required maxlength="10" />
-
-                                                           <label id="number-error" class="error" for="number" style="display: none;"></label>
-
-                                                          </div> 
-                                                      </div>
-                                                 </div>
-                                            </div> -->
+                                               <div class="form-group row">
+                                                <label class="control-label col-md-3"> Area Name 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="clinic_area" id="clinic_area" data-required="1"
+                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> City
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="clinic_city" id="clinic_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
+                                            
+                                          
+                                         
+                                           <div class="form-group row">
+                                                <label class="control-label col-md-3">  Consultation Timings 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3"> Consultation Fees 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="clinic_fees" id="clinic_fees" data-required="1"
+                                                        placeholder="Enter  Consultation Fees " class="form-control input-height" required />
+                                                </div>
+                                            </div>
                                                 
                                                       <div class="form-group row">
                                                 <label class="control-label col-md-3">Contact Number
@@ -301,7 +377,7 @@
 
         });
         setTimeout(function(){
-        window.location.href = '<?php echo base_url()?>Admin/All_Internal Doctors';
+        window.location.href = '<?php echo base_url()?>Admin/All_InternalDoctors';
         },2000);
 
         }else if(data.status == 'error'){

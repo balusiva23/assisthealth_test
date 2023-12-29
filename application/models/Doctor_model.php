@@ -492,12 +492,12 @@ function make_query($filters)
         }
     }
 
-    // if (!empty($conditions)) {
-    //     $query .= " AND " . implode(" AND ", $conditions);
-    // }
-     if (!empty($conditions)) {
-        $query .= " AND " . implode(" OR ", $conditions);
+    if (!empty($conditions)) {
+        $query .= " AND " . implode(" AND ", $conditions);
     }
+    //  if (!empty($conditions)) {
+    //     $query .= " AND " . implode(" OR ", $conditions);
+    // }
 
     //print_r($query);
 

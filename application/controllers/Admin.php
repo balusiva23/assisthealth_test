@@ -3758,6 +3758,15 @@ public function update_admin()
 		    $number = $this->input->post('number');
 		    $hospital = $this->input->post('hospital');
 
+		    $clinic_name = $this->input->post('clinic_name');
+			$clinic_address = $this->input->post('clinic_address');
+			$clinic_timing = $this->input->post('clinic_timing');
+			$clinic_fees = $this->input->post('clinic_fees');
+
+
+
+
+
 		    // echo $speciality;
 		    // echo $specializedIn;
 
@@ -3834,8 +3843,18 @@ public function update_admin()
 				    'timing' => $timing,
 				    'fees' => $fees,
 				    'contact_number' => $number,
-				    'hospital' => $hospital, // Assuming you've processed the uploaded file as shown in the previous response
-				    'profile_picture' => $img_url, // Assuming you've processed the uploaded file as shown in the previous response
+				    'hospital' => $hospital, 
+				    'profile_picture' => $img_url, 
+                      
+                      //new
+				    'clinic_name' => $clinic_name,
+				    'clinic_address' => $clinic_address,
+				    'clinic_timing' => $clinic_timing,
+				    'clinic_fees' => $clinic_fees,
+				      'hospital_area' => $this->input->post('hospital_area'),
+					    'hospital_city' => $this->input->post('hospital_city'),
+					    'clinic_area' => $this->input->post('clinic_area'),
+					    'clinic_city' => $this->input->post('clinic_city'),
 				);
 
 	            
@@ -3854,6 +3873,15 @@ public function update_admin()
 				    'fees' => $fees,
 				    'contact_number' => $number,
 				    'hospital' => $hospital,
+				     //new
+				    'clinic_name' => $clinic_name,
+				    'clinic_address' => $clinic_address,
+				    'clinic_timing' => $clinic_timing,
+				    'clinic_fees' => $clinic_fees,
+				     'hospital_area' => $this->input->post('hospital_area'),
+					    'hospital_city' => $this->input->post('hospital_city'),
+					    'clinic_area' => $this->input->post('clinic_area'),
+					    'clinic_city' => $this->input->post('clinic_city'),
 				);
 	      	 
 
@@ -3890,6 +3918,12 @@ public function update_admin()
 			    $timing = $this->input->post('timing');
 			    $fees = $this->input->post('fees');
 			    $number = $this->input->post('number');
+
+
+			    $clinic_name = $this->input->post('clinic_name');
+				$clinic_address = $this->input->post('clinic_address');
+				$clinic_timing = $this->input->post('clinic_timing');
+				$clinic_fees = $this->input->post('clinic_fees');
 
 
 		        $this->load->library('form_validation');
@@ -3944,7 +3978,15 @@ public function update_admin()
 				    'timing' => $timing,
 				    'fees' => $fees,
 				    'contact_number' => $number,
-				    'profile_picture' => $fileUrl, // Assuming you've processed the uploaded file as shown in the previous response
+				    'profile_picture' => $fileUrl,  //new
+				    'clinic_name' => $clinic_name,
+				    'clinic_address' => $clinic_address,
+				    'clinic_timing' => $clinic_timing,
+				    'clinic_fees' => $clinic_fees,
+				     'hospital_area' => $this->input->post('hospital_area'),
+					    'hospital_city' => $this->input->post('hospital_city'),
+					    'clinic_area' => $this->input->post('clinic_area'),
+					    'clinic_city' => $this->input->post('clinic_city'),
 				);
 
 
@@ -3964,6 +4006,15 @@ public function update_admin()
 				    'timing' => $timing,
 				    'fees' => $fees,
 				    'contact_number' => $number,
+				     //new
+				    'clinic_name' => $clinic_name,
+				    'clinic_address' => $clinic_address,
+				    'clinic_timing' => $clinic_timing,
+				    'clinic_fees' => $clinic_fees,
+				     'hospital_area' => $this->input->post('hospital_area'),
+				    'hospital_city' => $this->input->post('hospital_city'),
+				    'clinic_area' => $this->input->post('clinic_area'),
+				    'clinic_city' => $this->input->post('clinic_city'),
 				   
 				);
 
@@ -4011,6 +4062,16 @@ public function update_admin()
 		    'hospital' => $navigator->hospital,
 		    //'createdOn' => $navigator->createdOn,
 		   // 'isActive' => $navigator->isActive,
+
+		     //new
+				    'clinic_name' => $navigator->clinic_name,
+				    'clinic_address' => $navigator->clinic_address,
+				    'clinic_timing' => $navigator->clinic_timing,
+				    'clinic_fees' => $navigator->clinic_fees,
+				     'hospital_area' => $navigator->hospital_area,
+				    'hospital_city' => $navigator->hospital_city,
+				    'clinic_area' =>$navigator->clinic_area,
+				    'clinic_city' => $navigator->clinic_city,
 		);
 	        
 	        // Send the response as JSON
@@ -4100,7 +4161,8 @@ public function update_admin()
 
 
 
-	         // ------------------------------ Internal Doctors ---------------------------------------------------- //
+	         // ------------------------------ Internal Doctors  END ---------------------------------------------------- //
+		
 	         // ------------------------------ ID CARD ---------------------------------------------------- //
 	     public function generate_IdCard()
 		{ //IDCARD
@@ -4153,7 +4215,7 @@ public function update_admin()
 		// Add a page
 		$pdf->AddPage();
        //assets\backend_assets\img\id
-		$img_file = base_url().'assets/backend_assets/img/id/bg1.jpg';
+		$img_file = base_url().'assets/backend_assets/img/id/bg1.png';//bg1.jpg
 
 		$pdf->Image($img_file, 10, 10, 140, 70, '', '', '', false, 300, '', false, false, 0);
 		  $pdf->SetMargins(10, 10, 10, 0);
@@ -4174,11 +4236,11 @@ public function update_admin()
 		        <td style="width: 52%; float:right">
 		            <table border="0" cellspacing="0" cellpadding="0" width="100%">
 		                <tr>
-		                    <td><img src="'.base_url().'assets/backend_assets/img/id//logo.png" style="width:100px"/>
+		                   &nbsp;&nbsp; <td><img src="'.base_url().'assets/backend_assets/img/id//logo.png" style="width:100px"/>
 		                    </td>
 		                </tr>
 		                <tr>
-		                <br> <td style="color: white; font-size: 12px; font-weight: lighter; float: right; margin:0">
+		                <br> &nbsp;&nbsp;<td style="color: white; font-size: 12px; font-weight: lighter; float: right; margin:0">
 		                        <span style="color: white; font-size: 12px;">CONTACT DETAILS</span><br><br>
 		                         <span style="color: white; font-size: 12px;"><a href="tel:919611232569" style="color: white; text-decoration: none;">+91 9611232569</a></span><br>
 		                        <span style="color: white; font-size: 12px;"><a href="mailto:infoassisthealth@gmail.com" style="color: white; text-decoration: none;">infoassisthealth@gmail.com</a></span><br>

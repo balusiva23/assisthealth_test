@@ -191,6 +191,45 @@
                                 <?php } ?>
                             </select>
                         </div>
+                        <!-- New -->
+                        <div class="form-group col-md-2">
+                            <label class="control-label">City <span class="required"> </span></label>
+                            <select class="form-control input-height search hospital_city" name="hospital_city" id="hospital_city" required>
+                                <option value="">Select...</option>
+                                <?php
+                                $uniqueFees = array_unique(array_column($navigators, 'hospital_city'));
+                                foreach ($uniqueFees as $hospital_city) { 
+                                    if(!empty($hospital_city)){ ?>
+                                    <option value="<?= $hospital_city ?>"><?= $hospital_city ?></option>
+                                <?php } } ?>
+                            </select>
+                        </div>
+                         <div class="form-group col-md-2">
+                            <label class="control-label">Clinic Area <span class="required"> </span></label>
+                            <select class="form-control input-height search clinic_area" name="clinic_area" id="clinic_area" required>
+                                <option value="">Select...</option>
+                                <?php
+                                $uniqueFees = array_unique(array_column($navigators, 'clinic_area'));
+                                foreach ($uniqueFees as $clinic_area) { 
+                                    if(!empty($clinic_area)){ ?>
+                                    <option value="<?= $clinic_area ?>"><?= $clinic_area ?></option>
+                                <?php } } ?>
+                            </select>
+                        </div> 
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Hospital Area <span class="required"> </span></label>
+                            <select class="form-control input-height search hospital_area" name="hospital_area" id="hospital_area" required>
+                                <option value="">Select...</option>
+                                <?php
+                                $uniqueFees = array_unique(array_column($navigators, 'hospital_area'));
+                                foreach ($uniqueFees as $hospital_area) { 
+                                    if(!empty($hospital_area)){ ?>
+                                    <option value="<?= $hospital_area ?>"><?= $hospital_area ?></option>
+                                <?php } } ?>
+                            </select>
+                        </div>
+
+
                             </div>
 
                             <div class="tabbable-line">
@@ -267,184 +306,7 @@
     </div>
 
 
-   <!--  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-             <form  id="form_sample_1" class="form-horizontal" method="post " enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Update Doctor Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                   
-                        <div class="form-body">
-                            <div class="form-group row">
-                                <label class="control-label col-md-3"> Name
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <input type="text" name="firstname" data-required="1" placeholder="Enter Name"
-                                        class="form-control input-height" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Email ID
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <input type="text" name="email" data-required="1" placeholder="Enter Email ID"
-                                        class="form-control input-height" />
-                                </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Gender
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <select class="form-control input-height" name="gender">
-                                        <option value="">Select...</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Mobile No.
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <input name="number" type="text" placeholder="Mobile Number"
-                                        class="form-control input-height" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Profile Picture
-                                </label>
-                                <div class="col-md-8">
-                                    <input type="file" class="default" name="file_url">
-                                </div>
-
-                               
-                            </div>
-                                   
-                                 <div class="form-group row">
-                                <label class="control-label col-md-3"> Education Qualification
-                                    <span class="required"> </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <input type="text" name="qualification" data-required="1"
-                                        placeholder="Enter Education Qualification" class="form-control input-height"  />
-                                </div>
-                            </div>
-                                 <div class="form-group row">
-                                <label class="control-label col-md-3"> Medical Council Number
-                                    <span class="required"> </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <input type="text" name="medical_council_no" data-required="1"
-                                        placeholder="Enter  Medical Council Number" class="form-control input-height"  />
-                                </div>
-                            </div>
-                                               
-
-                            <div class="preview" style="  display: grid;place-items: center;">
-                                <img src="" id="pre-img" style="width:100px">
-
-                            </div>
-                             
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">language spoken
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox1" name="language[]" type="checkbox" value="tamil">
-                                                <label for="checkbox1">
-                                                    Tamil
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox2" name="language[]" type="checkbox" value="english">
-                                                <label for="checkbox2">
-                                                    English
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox3" name="language[]" type="checkbox" value="hindi">
-                                                <label for="checkbox3">
-                                                    Hindi
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox4" name="language[]" type="checkbox" value="malayalam">
-                                                <label for="checkbox4">
-                                                    Malayalam
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox5" name="language[]" type="checkbox" value="telugu">
-                                                <label for="checkbox5">
-                                                    Telugu
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4 col-sm-4">
-                                            <div class="checkbox checkbox-icon-black p-0">
-                                                <input id="checkbox6" name="language[]" type="checkbox" value="kannada">
-                                                <label for="checkbox6">
-                                                    Kannada
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Intro about Doctor
-                                </label>
-                                <div class="col-md-8">
-                                    <textarea name="address" class="form-control-textarea"
-                                        placeholder="Intro about Doctor" rows="5"></textarea>
-                                </div>
-                            </div>
-                       <div class="form-group row">
-                                <label class="control-label col-md-3"> Enter Password
-                                    <span class="required"> * </span>
-                                </label>
-                                <div class="col-md-5">
-                                    <input type="password" name="password" data-required="1" placeholder="Enter Password"
-                                        class="form-control input-height" />
-                                </div>
-                            </div>
-
-                        </div>
-                  
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="id">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                     <button type="submit" class="btn btn-primary"  id="update">update</button>
-                </div>
-                  </form>
-            </div>
-        </div> -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <form id="form_sample_1" class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -496,11 +358,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Specialized In
+                            <label class="control-label col-md-3">Specialised In 
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" name="specializedIn" id="specializedIn" data-required="1" placeholder="Enter Specialized In " class="form-control input-height" />
+                                <input type="text" name="specializedIn" id="specializedIn" data-required="1" placeholder="Enter Specialised In " class="form-control input-height" />
                             </div>
                         </div>
 
@@ -513,8 +375,18 @@
                             </div>
                         </div>
 
+                            <div class="form-group row">
+                                <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
+                                <div class="col-md-8" style="text-align: center;">
+                                          <span  style="font-weight: bold;"> Hospital 
+                                    
+                                </span>
+                             
+                                </div>
+                             </div> 
+
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Hospital
+                            <label class="control-label col-md-3">Name
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-8">
@@ -523,12 +395,31 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Clinic Address
+                            <label class="control-label col-md-3"> Address
                             </label>
                             <div class="col-md-8">
-                                <textarea name="address" class="form-control-textarea" placeholder="Clinic Address" rows="5"></textarea>
+                                <textarea name="address" class="form-control-textarea" placeholder=" Address" rows="2"></textarea>
                             </div>
                         </div>
+
+                          <div class="form-group row">
+                                                <label class="control-label col-md-3"> Area Name 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="hospital_area" id="hospital_area" data-required="1"
+                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> City
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="hospital_city" id="hospital_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Hospital Consultation Timings
@@ -547,6 +438,77 @@
                                 <input type="text" name="fees" id="fees" data-required="1" placeholder="Enter Consultation Fees " class="form-control input-height" />
                             </div>
                         </div>
+
+                         <div class="form-group row">
+                                <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
+                                <div class="col-md-8" style="text-align: center;">
+                                          <span  style="font-weight: bold;"> Clinic 
+                                    
+                                </span>
+                             
+                                </div>
+                             </div> 
+
+                              <div class="form-group row">
+                                                <label class="control-label col-md-3"> Name 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="clinic_name" id="clinic_name" data-required="1"
+                                                        placeholder="Enter  Clinic " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
+
+                                
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">  Address 
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <textarea name="clinic_address" class="form-control-textarea"
+                                                        placeholder=" Address" rows="2"></textarea>
+                                                </div>
+                                            </div>
+
+                                               <div class="form-group row">
+                                                <label class="control-label col-md-3"> Area Name 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="clinic_area" id="clinic_area" data-required="1"
+                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3"> City
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="clinic_city" id="clinic_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                </div>
+                                            </div>  
+                                            
+                                          
+                                         
+                                           <div class="form-group row">
+                                                <label class="control-label col-md-3">  Consultation Timings 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3"> Consultation Fees 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <input type="text" name="clinic_fees" id="clinic_fees" data-required="1"
+                                                        placeholder="Enter  Consultation Fees " class="form-control input-height" required />
+                                                </div>
+                                            </div>
+                                                
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Contact Number
@@ -691,7 +653,7 @@
 // New--------------------------Filter---------------------------------
 $(document).ready(function () {
     // Assuming your select elements have IDs: 'name', 'speciality', 'timings', 'fees'
-    $('#name, #speciality,#hospital, #timing, #fees').change(function () {
+    $('#name, #speciality,#hospital, #timing, #fees ,#hospital_area,#clinic_area,#hospital_city').change(function () {
       // Remove selected options in other dropdowns
      //   $('#name, #speciality, #hospital, #timing, #fees').not(this).val('');
         filter_data(1);
@@ -727,7 +689,7 @@ $(document).ready(function () {
     var filters = [];
 
     // Assuming your select elements have IDs: 'name', 'speciality', 'timing', 'fees'
-    $('#name, #speciality, #hospital, #timing, #fees').each(function () {
+    $('#name, #speciality, #hospital, #timing, #fees,#hospital_area,#clinic_area,#hospital_city').each(function () {
         var dropdown_id = $(this).attr('id');
         var dropdown_value = $(this).val();
 
@@ -798,6 +760,19 @@ $(document).ready(function () {
                     $('#staticBackdrop [name="fees"]').val(response.fees);
                     $('#staticBackdrop [name="number"]').val(response.contact_number);
                     $('#staticBackdrop [name="hospital"]').val(response.hospital);
+
+
+                    $('#staticBackdrop [name="clinic_name"]').val(response.clinic_name);
+                    $('#staticBackdrop [name="clinic_address"]').val(response.clinic_address);
+                    $('#staticBackdrop [name="clinic_timing"]').val(response.clinic_timing);
+                    $('#staticBackdrop [name="clinic_fees"]').val(response.clinic_fees);
+                    $('#staticBackdrop [name="hospital_city"]').val(response.hospital_city);
+                    $('#staticBackdrop [name="clinic_area"]').val(response.clinic_area);
+                    $('#staticBackdrop [name="clinic_city"]').val(response.clinic_city);
+                    $('#staticBackdrop [name="hospital_area"]').val(response.hospital_area);
+
+
+
                 
 
                      // Open the modal

@@ -76,6 +76,7 @@
                                                                
                                                                     <th class="center"> Update  </th>
                                                                     <th class="center"> Sub Profile </th>
+                                                                     <th class="center">Member ID </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -129,6 +130,17 @@
                                                                             view
                                                                         </a>
                                                                            <?php } ?>
+                                                                    </td>
+                                                                    <td class="center">
+                                                                
+
+                                                                        <a href="<?php echo base_url(); ?>Navigator/generate_IdCard?id=<?php echo base64_encode($member->id); ?>&m_name=<?php echo base64_encode($member->name); ?>&m_id=<?php echo base64_encode($member->member_id); ?>" class="" data-id="<?php echo $member->id; ?>" target="_blank">
+                                                                                <i class="fa fa-file"></i>
+                                                                        </a>
+
+
+
+
                                                                     </td>
                                                                 </tr>
 

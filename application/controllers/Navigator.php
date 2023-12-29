@@ -3243,4 +3243,109 @@ public function Book_member_appoinment()
 		    }
 		}
 
+
+
+
+		   // ------------------------------ ID CARD ---------------------------------------------------- //
+	     public function generate_IdCard()
+		{ //IDCARD
+
+		$m_name = base64_decode($this->input->get('m_name'));
+		$m_id = base64_decode($this->input->get('m_id'));
+
+		$this->load->library('IDCARD');
+        // Create instance of TCPDF
+		$pdf = new IDCARD(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'utf-8', false);
+
+
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('ID CARD');
+		$pdf->SetTitle('ID CARD');
+		$pdf->SetSubject('ID CARD');
+		//$pdf->SetKeywords('TCPDF, PDF, example, test, codeigniter');
+
+		// set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, "", PDF_HEADER_TITLE, PDF_HEADER_STRING);
+
+		// set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+		// $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		// $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+		// set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+		// set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+		// set font
+		// $pdf->SetFont('times', 'BI', 12);
+		  $pdf->SetMargins(10, 10, 10, 0);
+		  // Remove footer margin
+		$pdf->SetFooterMargin(0);
+		// remove default header/footer
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+
+		    // $pdf->SetFont('times', 'BI', 12);
+
+		// Add a page
+		$pdf->AddPage();
+       //assets\backend_assets\img\id
+		$img_file = base_url().'assets/backend_assets/img/id/bg1.png';//bg1.jpg
+
+		$pdf->Image($img_file, 10, 10, 140, 70, '', '', '', false, 300, '', false, false, 0);
+		  $pdf->SetMargins(10, 10, 10, 0);
+		// HTML content
+			$html = '
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-right:5%">
+		    <tr>
+		    <br>
+		    <td style="width: 48%; "><p style="font-weight: bold; color: #38B6FF;"> &nbsp;&nbsp;ASSISTHEALTH<br><span style="color: white;font-size:12px;background:white">  &nbsp;&nbsp;MEMBERSHIP CARD</span> 
+		        <br> &nbsp;&nbsp;<span style="background-color: ; border-radius: 10px;  margin-left: 10px; width:10%"><span style="color:#38B6FF;text-transform: uppercase;">'.$m_name.' &nbsp;&nbsp;&nbsp;</span></span><br>&nbsp;&nbsp;&nbsp;<span style="color: white;background-color: ;border-radius: 10px;  ">ASSISTHEALTH ID:<span style="color: #aa893f;background-color: ;">'.$m_id.'</span></span> </p><p style="font-weight: bold; color: #38B6FF; font-size:12px"> &nbsp;&nbsp;COMPLETE HEALTHCARE SUPPORT,<br>   JUST A CALL AWAY</p>
+		           <span style="font-weight: bold; color: black; text-transform: uppercase;background-color: #38B6FF;"> &nbsp;&nbsp;9611232593 / 9611232519</span><br>
+		        <span style="color: white; font-size: 10px;"> &nbsp;&nbsp;Valid for registered members only.</span><br>
+		        <span style="color: white; font-size: 10px;"> &nbsp;&nbsp;Use this membership card to schedule any AssistHealth services.</span><br>
+		        <span style="color: white; font-size: 10px;"> &nbsp;&nbsp;Keep these contact numbers handy for quick access to your  <br> &nbsp;&nbsp;   Navigators.</span>
+		                        
+		                  
+		        </td>
+		        <td style="width: 52%; float:right">
+		            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+		                <tr>
+		                   &nbsp;&nbsp; <td><img src="'.base_url().'assets/backend_assets/img/id//logo.png" style="width:100px"/>
+		                    </td>
+		                </tr>
+		                <tr>
+		                <br> &nbsp;&nbsp;<td style="color: white; font-size: 12px; font-weight: lighter; float: right; margin:0">
+		                        <span style="color: white; font-size: 12px;">CONTACT DETAILS</span><br><br>
+		                         <span style="color: white; font-size: 12px;"><a href="tel:919611232569" style="color: white; text-decoration: none;">+91 9611232569</a></span><br>
+		                        <span style="color: white; font-size: 12px;"><a href="mailto:infoassisthealth@gmail.com" style="color: white; text-decoration: none;">infoassisthealth@gmail.com</a></span><br>
+		                        <span style="color: white; font-size: 12px;"><a href="www.assisthealth.in" style="color: white; text-decoration: none;">www.assisthealth.in</a></span>
+		                    </td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		</table>';
+
+		$inputString = $m_name;
+         $outputString = str_replace(' ', '_', strtolower($inputString));
+
+		// Write HTML content to the PDF
+		$pdf->writeHTML($html, true, false, true, false, '');
+         ob_end_clean();
+	       ob_clean();
+		// Output the PDF to the browser or save it to a file
+		$pdf->Output($outputString.'_membership_card.pdf', 'I');
+		}
+
+
+
 }

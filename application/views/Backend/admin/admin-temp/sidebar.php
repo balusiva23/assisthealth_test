@@ -173,7 +173,7 @@
                                      <!--Internal Doctors  -->
                              <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"><i data-feather="book"></i>
-                                    <span class="title">Internal Doctors</span><span class="arrow"></span></a>
+                                    <span class="title">Empanelled Doctors</span><span class="arrow"></span></a>
                                 <ul class="sub-menu " <?= $this->uri->segment(2) === 'Add_InternalDoctor' || $this->uri->segment(2) === 'All_InternalDoctors'|| $this->uri->segment(2) === 'Assign_Doctors' ? 'style="display: block;"' : '' ?>>
 
                                     <li class="nav-item  <?= $this->uri->segment(2) === 'Add_InternalDoctor' ? 'active' : '' ?>">
