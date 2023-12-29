@@ -162,8 +162,15 @@
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> * </span>
                                                 </label>
-                                                <div class="col-md-5">
+                                                <div class="col-md-2">
                                                     <input type="time" name="timing" id="timing" data-required="1"
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                </div>
+                                                 <div class="col-md-1 text-center">
+                                                    <span> to </span>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="time" name="hospital_to_timing" id="hospital_to_timing" data-required="1"
                                                         placeholder="Enter  Consultation Timings " class="form-control input-height" required />
                                                 </div>
                                             </div>
@@ -226,13 +233,29 @@
                                             </div>  
                                             
                                           
-                                         
+                                         <!-- 
                                            <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                </div>
+                                            </div> -->
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3">  Consultation Timings 
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-2">
+                                                    <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                </div>
+                                                 <div class="col-md-1 text-center">
+                                                    <span> to </span>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="time" name="clinic_to_timing" id="clinic_to_timing" data-required="1"
                                                         placeholder="Enter  Consultation Timings " class="form-control input-height" required />
                                                 </div>
                                             </div>

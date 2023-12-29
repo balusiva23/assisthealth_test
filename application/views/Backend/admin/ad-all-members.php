@@ -68,12 +68,13 @@
                                                                     <th class="center">M-ID</th>
                                                                     <th class="center"> Name </th>
                                                                     <th class="center"> Email </th>
-                                                                    <th class="center"> Address </th>
+                                                                    <th class="center" width="30%"> Address </th>
                                                                     <th class="center">Mobile</th>
                                                                     <th class="center">Membership</th>
                                                                     <th class="center"> Update / Delete </th>
                                                                     <th class="center"> Sub Profile </th>
                                                                     <th class="center">Member ID </th>
+                                                                    <!-- <th class="center">Status </th> -->
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -140,7 +141,21 @@
 
 
 
-                                                                    </td>
+                                                                    </td>  
+                                                                  <!--   <td class="center">
+                                                                
+                                                                       <?php 
+                                                                       if($member->approve_status == '0'){ ?>
+                                                                        <a class="btn deepPink btn-outline btn-circle m-b-10"  data-id="<?php echo $member->id; ?>" href="#" id="approve">
+                                                                            Accept
+                                                                        </a> 
+
+                                                                        <?php } ?>
+
+         
+                               
+
+                                                                    </td> -->
                                                                 </tr>
 
 
@@ -624,6 +639,61 @@
     });
 
     });    
+
+
+
+//New Dec------------------------------------------------------------------------------------------------------------------
+ $(document).on('click','#approve',function(){
+        event.preventDefault();
+        
+    
+        var id = $(this).data('id');
+      
+
+        $.ajax({
+        type:'post',
+        url: '<?php echo base_url("Admin/approve_member_data");?>',
+        data: {id:id},
+      
+        dataType: 'json',
+        success:function(resp){
+        //var data=$.parseJSON(resp);
+       // console.log(resp)
+       // console.log(data)
+        if(resp.status == 'success'){
+    
+        $.wnoty({
+        type: 'success',
+        message: "Member Updated successfully",
+        autohideDelay: 1000,
+        position: 'top-right'
+
+        });
+
+         setTimeout(function(){
+         location.reload(true);
+        },2000);
+       
+       }else if(resp.status == 'error'){
+              $.wnoty({
+                    type: 'error',
+                    message: data.message,
+                    autohideDelay: 2000,
+                    position: 'top-right'
+
+                    });
+        //        setTimeout(function(){
+        //  location.reload(true);
+        // },2000);
+
+
+        }
+        },
+        });
+       
+     
+        return false;
+        })
 
 
 </script>

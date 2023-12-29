@@ -1455,7 +1455,8 @@ public function contactus() {
             'number'  => $this->input->post('number'),
             'dob'     => $this->input->post('dob'),
             'gender'  => $this->input->post('gender'),
-            'address' => $this->input->post('address')
+            'address' => $this->input->post('address'),
+            'approve_status'=>'0'
         );
 
         // Save Parent Data
@@ -1475,7 +1476,8 @@ public function contactus() {
                // 'relationship'   => $relationships[$key],
                 'isSubprofile'   => 'Yes',
                 'parent_member'  => $parentId,
-                'member_status'  => 1
+                'member_status'  => 1,
+                   'approve_status'=>'0'
             );
 
             $this->Admin_model->saveNewMember($subProfileData);

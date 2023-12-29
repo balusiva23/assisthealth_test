@@ -167,18 +167,48 @@
 
                         <div class="form-group col-md-2">
                             <label class="control-label">Timings <span class="required"> </span></label>
-                            <select class="form-control input-height search timing" name="timing" id="timing" required>
+                           <!--  <select class="form-control input-height search timing" name="timing" id="timing" required>
                                 <option value="">Select...</option>
                                 <?php
                                 $uniqueTimings = array_unique(array_column($navigators, 'timing'));
                                 foreach ($uniqueTimings as $timing) { 
 
                                        // Assuming $timing is in HH:MM:SS format
-                                  $formattedTime = date("h:i A", strtotime($timing)); ?>
+                                  $formattedTime = date("h:i A", strtotime($timing));
+
+                                   ?>
                                     <option value="<?= $timing ?>"><?= $formattedTime ?></option>
                                 <?php } ?>
-                            </select>
-                        </div>
+                            </select>-->  
+                    
+                    
+                    
+           <select class="form-control input-height search timing" name="timing" id="timing" required>
+    <option value="">Select...</option>
+    <?php
+    $uniqueTimings = array_unique(array_column($navigators, 'timing'));
+    foreach ($uniqueTimings as $timing) { 
+
+        // Assuming $timing is in HH:MM:SS format
+        $formattedTime = date("h:i A", strtotime($timing));
+
+        // Find the corresponding hospital_to_timing value
+        $hospitalToTiming = ''; // Initialize to an empty string, update this based on your actual data structure
+
+        // Loop through the navigators object to find the corresponding hospital_to_timing
+        foreach ($navigators as $navigator) {
+            if ($navigator->timing == $timing) {
+                $hospitalToTiming = $navigator->hospital_to_timing;
+                break;
+            }
+        }
+        ?>
+        <option value="<?= $timing ?>"><?= $formattedTime ?> - <?= ($hospitalToTiming)  ? date("h:i A", strtotime($hospitalToTiming)) : $hospitalToTiming ?></option>
+    <?php } ?>
+</select>
+
+
+                      </div>
 
                         <div class="form-group col-md-2">
                             <label class="control-label">Fees <span class="required"> </span></label>
@@ -422,11 +452,17 @@
                                             </div>  
 
                         <div class="form-group row">
-                            <label class="control-label col-md-3">Hospital Consultation Timings
+                            <label class="control-label col-md-3"> Consultation Timings
                                 <span class="required"></span>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-3">
                                 <input type="time" name="timing" id="timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="">to </span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="time" name="hospital_to_timing" id="hospital_to_timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
                             </div>
                         </div>
 
@@ -490,7 +526,7 @@
                                             
                                           
                                          
-                                           <div class="form-group row">
+                                         <!--   <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> * </span>
                                                 </label>
@@ -498,7 +534,21 @@
                                                     <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
                                                         placeholder="Enter  Consultation Timings " class="form-control input-height" required />
                                                 </div>
-                                            </div>
+                                            </div> -->
+                                              <div class="form-group row">
+                                    <label class="control-label col-md-3"> Consultation Timings
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3">
+                                        <input type="time" name="clinic_timing" id="clinic_timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <span class="">to </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="time" name="clinic_to_timing" id="clinic_to_timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
+                                    </div>
+                                </div>
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3"> Consultation Fees 
                                                     <span class="required"> * </span>
@@ -770,6 +820,8 @@ $(document).ready(function () {
                     $('#staticBackdrop [name="clinic_area"]').val(response.clinic_area);
                     $('#staticBackdrop [name="clinic_city"]').val(response.clinic_city);
                     $('#staticBackdrop [name="hospital_area"]').val(response.hospital_area);
+                    $('#staticBackdrop [name="clinic_to_timing"]').val(response.clinic_to_timing);
+                    $('#staticBackdrop [name="hospital_to_timing"]').val(response.hospital_to_timing);
 
 
 

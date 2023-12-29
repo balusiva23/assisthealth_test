@@ -3764,15 +3764,6 @@ public function update_admin()
 			$clinic_fees = $this->input->post('clinic_fees');
 
 
-
-
-
-		    // echo $speciality;
-		    // echo $specializedIn;
-
-		    //    print_r($_POST);
-		    //  die();
-             // Hash the password
           // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 	        $this->load->library('form_validation');
 	        $this->form_validation->set_error_delimiters();
@@ -3786,21 +3777,10 @@ public function update_admin()
 	        } else {
 	        
 
-			// if ($this->Doctor_model->is_email_duplicate($email) && $this->Doctor_model->is_number_duplicate($number) ) {
-			// $response = array(
-			// 	'status' => 'error',
-			// 	'message' => 'Email address and number already exist'
-			// );
-			// echo json_encode($response);
-			// } else
-
-           //$this->Doctor_model->is_email_duplicate($email)
 			if ( $this->Doctor_model->is_number_duplicate($number)) {
 				
-					echo json_encode(array('status' => 'error', 'message' => 'Email address already exists'));
-				// } elseif ($this->Doctor_model->is_number_duplicate($number) ) {
+					echo json_encode(array('status' => 'error', 'message' => 'Number already exists'));
 				
-				// 	echo json_encode(array('status' => 'error', 'message' => 'Number already exists'));
 			} else {
 
 		     if($_FILES['file_url']['name']){
@@ -3851,10 +3831,12 @@ public function update_admin()
 				    'clinic_address' => $clinic_address,
 				    'clinic_timing' => $clinic_timing,
 				    'clinic_fees' => $clinic_fees,
-				      'hospital_area' => $this->input->post('hospital_area'),
-					    'hospital_city' => $this->input->post('hospital_city'),
-					    'clinic_area' => $this->input->post('clinic_area'),
-					    'clinic_city' => $this->input->post('clinic_city'),
+			        'hospital_area' => $this->input->post('hospital_area'),
+				    'hospital_city' => $this->input->post('hospital_city'),
+				    'clinic_area' => $this->input->post('clinic_area'),
+				    'clinic_city' => $this->input->post('clinic_city'),
+				    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				);
 
 	            
@@ -3882,6 +3864,8 @@ public function update_admin()
 					    'hospital_city' => $this->input->post('hospital_city'),
 					    'clinic_area' => $this->input->post('clinic_area'),
 					    'clinic_city' => $this->input->post('clinic_city'),
+					    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				);
 	      	 
 
@@ -3987,6 +3971,8 @@ public function update_admin()
 					    'hospital_city' => $this->input->post('hospital_city'),
 					    'clinic_area' => $this->input->post('clinic_area'),
 					    'clinic_city' => $this->input->post('clinic_city'),
+					    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				);
 
 
@@ -4015,6 +4001,8 @@ public function update_admin()
 				    'hospital_city' => $this->input->post('hospital_city'),
 				    'clinic_area' => $this->input->post('clinic_area'),
 				    'clinic_city' => $this->input->post('clinic_city'),
+				    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				   
 				);
 
@@ -4072,6 +4060,8 @@ public function update_admin()
 				    'hospital_city' => $navigator->hospital_city,
 				    'clinic_area' =>$navigator->clinic_area,
 				    'clinic_city' => $navigator->clinic_city,
+				    'hospital_to_timing' => $navigator->hospital_to_timing,
+				    'clinic_to_timing' => $navigator->clinic_to_timing,
 		);
 	        
 	        // Send the response as JSON
@@ -4162,7 +4152,7 @@ public function update_admin()
 
 
 	         // ------------------------------ Internal Doctors  END ---------------------------------------------------- //
-		
+
 	         // ------------------------------ ID CARD ---------------------------------------------------- //
 	     public function generate_IdCard()
 		{ //IDCARD
@@ -4262,8 +4252,68 @@ public function update_admin()
 		// Output the PDF to the browser or save it to a file
 		$pdf->Output($outputString.'_membership_card.pdf', 'I');
 		}
+            
+        // ------------------------------ Approve Status---------------------------------------------------- //
 
 
+     public function approve_member_data()
+	{
+		//$this->checkLogin();
+		if ($this->session->userdata('user_login_access') != False) {
+             //die();
+		    	$id = $this->input->post('id');
+		    
+				
+              // Add more validation rules as needed for other fields
+                 $newMemberId = $this->generateUniqueMemberId();
+
+                 //getMemberByID
+				$member = $this->Manager_model->getMemberByID($id);
+
+				$password = $member->password;
+				$passwordNew = $member->number;
+                $hashed_password =  password_hash($passwordNew, PASSWORD_DEFAULT);
+
+                if($member->isSubprofile){
+
+                	$data = array(
+					 'member_id' =>$newMemberId,
+					  
+					  'approve_status'=>'1'
+					    
+					);
+		      	
+
+                 }else{
+
+                		$data = array(
+					 'member_id' =>$newMemberId,
+					  
+					  'approve_status'=>'1'
+					    
+					);
+		      	if (!$password) {
+				    $data["password"] = $hashed_password;
+				}
+
+                }
+
+		      // Save the data to the manager table using your model function
+		            $success = $this->Manager_model->UpdateMember($data,$id);
+
+		            if ($success) {
+		               echo json_encode(array('status' => 'success', 'message' => 'Data Added successfully'));
+		            } else {
+		            	
+		                echo json_encode(array('status' => 'error', 'message' => 'Failed to update data'));
+		            }
+
+		    
+		   // }
+		    } else {
+		        redirect(base_url(), 'refresh');
+		    }
+	}  
 
 
 
