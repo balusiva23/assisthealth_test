@@ -134,7 +134,7 @@
                                                                     <td class="center">
                                                                 
 
-                                                                        <a href="<?php echo base_url(); ?>Admin/generate_IdCard?id=<?php echo base64_encode($member->id); ?>&m_name=<?php echo base64_encode($member->name); ?>&m_id=<?php echo base64_encode($member->member_id); ?>" class="" data-id="<?php echo $member->id; ?>" target="_blank">
+                                                                        <a href="<?php echo base_url(); ?>Admin/generate_IdCard1?id=<?php echo base64_encode($member->id); ?>&m_name=<?php echo base64_encode($member->name); ?>&m_id=<?php echo base64_encode($member->member_id); ?>" class="" data-id="<?php echo $member->id; ?>" target="_blank">
                                                                                 <i class="fa fa-file"></i>
                                                                         </a>
 
