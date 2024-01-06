@@ -254,14 +254,14 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-3">
                                         <div class="form-group">
-                                            <label for="simpleFormEmail">Physician  Name</label><span class="error"> *</span>
+                                            <label for="simpleFormEmail">Physician  Name</label><span class="error">*</span>
                                             <input type="text" class="form-control" id="physician_name" name="physician_name" 
-                                                placeholder="Enter Physician  Name" value="<?= isset($medical_history->physician_name) ? $medical_history->physician_name : ''  ?> " required>
+                                                placeholder="Enter Physician  Name" value="<?= isset($medical_history->physician_name) ? $medical_history->physician_name : ''  ?> " >
                                         </div>
                                     </div>
                                         
                                         <div class="col-md-6 col-sm-3">
-                                              <label for="simpleFormPassword">Contact Number </label><span class="error"> *</span>
+                                              <label for="simpleFormPassword">Contact Number </label><span class="error"> </span>
                                            <div class="input-group ">
                                                        
                                           
@@ -271,7 +271,7 @@
                                                                 </span>
                                                               </div>
                                             <input type="text" class="form-control" id="physician_no" name="physician_no" 
-                                                placeholder="Number" value="<?= isset($medical_history->physician_no) ? trim($medical_history->physician_no) : ''  ?> "  required>
+                                                placeholder="Number" value="<?= isset($medical_history->physician_no) ? trim($medical_history->physician_no) : ''  ?> "  >
                                         </div>
                                     </div>
                                     </div>
@@ -1037,8 +1037,8 @@
         //   return;
         //  }
           
-        if(physician_name != '' && physician_no != '')
-       {
+       //  if(physician_name != '' && physician_no != '')
+       // {
         $.ajax({
         type:'post',
         url: '<?php echo base_url("Admin/save_medical_history");?>',
@@ -1072,7 +1072,7 @@
         }
         },
         });
-        }
+       // }
 
         return false;
         })
