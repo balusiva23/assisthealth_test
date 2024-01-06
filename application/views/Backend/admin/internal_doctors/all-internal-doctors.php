@@ -408,7 +408,7 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
                                 <div class="col-md-8" style="text-align: center;">
-                                          <span  style="font-weight: bold;"> Hospital 
+                                          <span  style="font-weight: bold;"> Work place 1 
                                     
                                 </span>
                              
@@ -420,7 +420,7 @@
                                 <span class="required"></span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" name="hospital" id="hospital" data-required="1" placeholder="Enter Hospital " class="form-control input-height" />
+                                <input type="text" name="hospital" id="hospital" data-required="1" placeholder="Enter Name " class="form-control input-height" />
                             </div>
                         </div>
 
@@ -478,7 +478,7 @@
                          <div class="form-group row">
                                 <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
                                 <div class="col-md-8" style="text-align: center;">
-                                          <span  style="font-weight: bold;"> Clinic 
+                                          <span  style="font-weight: bold;"> Work place 2 
                                     
                                 </span>
                              
@@ -491,7 +491,7 @@
                                                 </label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="clinic_name" id="clinic_name" data-required="1"
-                                                        placeholder="Enter  Clinic " class="form-control input-height" required />
+                                                        placeholder="Enter  Name " class="form-control input-height" required />
                                                 </div>
                                             </div>  
 
@@ -591,6 +591,88 @@
                     <input type="hidden" name="id">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="update">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ----------------------------Doctor view -------------------------- -->
+   <div class="modal fade" id="staticBackdrop_doc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form id="form_sample_1" class="form-horizontal" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Doctor Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+                                    <div class="card-body no-padding height-9">
+                                        <div class="row">
+                                            <div class="profile-userpic">
+                                                <img src="" class="img-responsive image" id="pre-img" alt=""> </div>
+                                        </div>
+                                        <div class="profile-usertitle">
+                                            <div> <span  class="profile-usertitle-name firstname"></span>  <span class="qualification"></span></div>
+                                            <div class="profile-usertitle-job speciality">  </div>
+                                            <div class="profile-usertitle-job gender">  </div>
+                                        </div>
+                                        <ul class="list-group list-group-unbordered">
+                                            <li class="list-group-item">
+                                                <b>Specialised In</b> <a class="pull-right specializedIn"></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Experience</b> <a class="pull-right experience"></a>
+                                            </li> 
+                                            <li class="list-group-item">
+                                                <b>Contact No</b> <a class="pull-right number"></a>
+                                            </li> 
+                                            <h4 class="text-center"><b>Work place 1</b></h4>
+                                            <li class="list-group-item">
+                                                <b>Address</b> <a class="pull-right " style="    text-align: justify;width: 350px;"><span class="hospital"></span><br><span class="address"></span><br><span class=""></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Area</b> <a class="pull-right hospital_area"></a>
+                                            </li>
+                                             <li class="list-group-item">
+                                                <b>City</b> <a class="pull-right hospital_city"></a>
+                                            </li> 
+
+                                            <li class="list-group-item">
+                                                <b>Consultation Timings</b> <a class="pull-right "> <span class="timing"></span> <span class="hospital_to_timing"></span> </a>
+                                            </li>
+                                             <li class="list-group-item">
+                                                <b>Consultation Fees</b> <a class="pull-right fees"></a>
+                                            </li> 
+                                            <!-- Work place 2 -->
+
+                                            <h4 class="text-center"><b>Work place 2</b></h4>
+                                            <li class="list-group-item">
+                                                <b>Address</b> <a class="pull-right " style="    text-align: justify;width: 350px;"><span class="clinic_name"></span><br><span class="clinic_address"></span><br><span class=""></span></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Area</b> <a class="pull-right clinic_area"></a>
+                                            </li>
+                                             <li class="list-group-item">
+                                                <b>City</b> <a class="pull-right clinic_city"></a>
+                                            </li> 
+
+                                            <li class="list-group-item">
+                                                <b>Consultation Timings</b> <a class="pull-right "> <span class="clinic_timing"></span> <span class="clinic_to_timing"></span> </a>
+                                            </li>
+                                             <li class="list-group-item">
+                                                <b>Consultation Fees</b> <a class="pull-right clinic_fees"></a>
+                                            </li> 
+
+                                        </ul>
+                                      
+                                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="submit" class="btn btn-primary" id="update">Update</button> -->
                 </div>
             </div>
         </form>
@@ -835,6 +917,9 @@ $(document).ready(function () {
                 }
             });
         });
+    //});     
+
+
     //});
 
          $(document).on('click','#update',function(){
@@ -949,6 +1034,77 @@ function toggleIntro(button) {
         button.textContent = 'Read More';
     }
 }
+
+
+
+
+   $(document).on('click','.tblViewBtn',function(){
+            var id = $(this).data('id');
+                // $('#staticBackdrop').modal('show');
+
+            // Make an AJAX request to retrieve the data for the ID
+            $.ajax({
+                url: '<?php echo base_url("Admin/getInternal_DoctorByID"); ?>?id=' + id,
+                method: 'GET',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    // Populate the modal with the data returned from the server
+                // Populate the modal with the data returned from the server
+                    $('#staticBackdrop_doc .id').val(response.id);
+                    $('#staticBackdrop_doc .firstname').text(response.name);
+                    $('#staticBackdrop_doc .gender').text(response.gender);
+                    $('#staticBackdrop_doc  .qualification').text(' '+response.qualification);
+                    $('#staticBackdrop_doc .speciality').text(response.speciality);
+                    $('#staticBackdrop_doc .specializedIn').text(response.specialized_in);
+                    $('#staticBackdrop_doc .experience').text(response.experience);
+                    $('#staticBackdrop_doc .address').text(response.address);
+                    $('#staticBackdrop_doc .timing').text(formatTime(response.timing));
+                    $('#staticBackdrop_doc .fees').text(parseFloat(response.fees));
+
+                    $('#staticBackdrop_doc .number').text(response.contact_number);
+                    $('#staticBackdrop_doc .hospital').text(response.hospital);
+
+
+                    $('#staticBackdrop_doc .clinic_name').text(response.clinic_name);
+                    $('#staticBackdrop_doc .clinic_address').text(response.clinic_address);
+                    $('#staticBackdrop_doc .clinic_timing').text(formatTime(response.clinic_timing));
+                    $('#staticBackdrop_doc .clinic_fees').text(parseFloat(response.clinic_fees));
+                    $('#staticBackdrop_doc .hospital_city').text(response.hospital_city);
+                    $('#staticBackdrop_doc .clinic_area').text(response.clinic_area);
+                    $('#staticBackdrop_doc .clinic_city').text(response.clinic_city);
+                    $('#staticBackdrop_doc .hospital_area').text(response.hospital_area);
+                   $('#staticBackdrop_doc .clinic_to_timing').text(' to ' +formatTime(response.clinic_to_timing));
+                $('#staticBackdrop_doc .hospital_to_timing').text(' to ' + formatTime(response.hospital_to_timing));
+
+
+                      if(response.profile_picture){
+                          $('#staticBackdrop_doc #pre-img').attr('src',"<?php echo base_url('assets/uploads/internal_doctors/'); ?>"+response.profile_picture);
+
+                    }
+
+                
+
+                     // Open the modal
+                    $('#staticBackdrop_doc').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error); // Handle the error if any
+                }
+            });
+        });
+
+
+   function formatTime(time) {
+    // Parse the time string into a Date object
+    var parsedTime = new Date("2000-01-01T" + time);
+
+    // Format the time in 12-hour format
+    var formattedTime = parsedTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+    return formattedTime;
+}
+
 </script>
 
 </body>

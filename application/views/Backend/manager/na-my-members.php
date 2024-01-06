@@ -134,7 +134,7 @@
                                                                     <td class="center">
                                                                 
 
-                                                                        <a href="<?php echo base_url(); ?>Navigator/generate_IdCard?id=<?php echo base64_encode($member->id); ?>&m_name=<?php echo base64_encode($member->name); ?>&m_id=<?php echo base64_encode($member->member_id); ?>" class="" data-id="<?php echo $member->id; ?>" target="_blank">
+                                                                        <a href="<?php echo base_url(); ?>Navigator/generate_IdCard1?id=<?php echo base64_encode($member->id); ?>&m_name=<?php echo base64_encode($member->name); ?>&m_id=<?php echo base64_encode($member->member_id); ?>" class="" data-id="<?php echo $member->id; ?>" target="_blank">
                                                                                 <i class="fa fa-file"></i>
                                                                         </a>
 
@@ -611,6 +611,78 @@
 
     });    
 
+//New Dec------------------------------------------------------------Approve December------------------------------------------------------
+ $(document).on('click','#approve',function(){
+        event.preventDefault();
+        
+    
+        var id = $(this).data('id');
+      
+
+        $.ajax({
+        type:'post',
+        url: '<?php echo base_url("Admin/approve_member_data");?>',
+        data: {id:id},
+      
+        dataType: 'json',
+        success:function(resp){
+        //var data=$.parseJSON(resp);
+       // console.log(resp)
+       // console.log(data)
+        if(resp.status == 'success'){
+    
+        $.wnoty({
+        type: 'success',
+        message: "Member Updated successfully",
+        autohideDelay: 1000,
+        position: 'top-right'
+
+        });
+
+         setTimeout(function(){
+         location.reload(true);
+        },2000);
+       
+       }else if(resp.status == 'error'){
+              $.wnoty({
+                    type: 'error',
+                    message: data.message,
+                    autohideDelay: 2000,
+                    position: 'top-right'
+
+                    });
+        //        setTimeout(function(){
+        //  location.reload(true);
+        // },2000);
+
+
+        }
+        },
+        });
+       
+     
+        return false;
+        })
+
+
+
+////New-------------------
+$(document).ready(function () {
+    // Check if there is a stored page number in sessionStorage
+    var savedPage = sessionStorage.getItem('tablePage');
+
+    // Initialize DataTable with the saved page number if available
+    var table = $('#example5').DataTable({
+        "pageLength": 10, // Set the desired number of rows per page
+        "displayStart": savedPage ? (parseInt(savedPage) * 10) : 0 // Set the saved page number or default to 0
+    });
+
+    // Event listener for page change
+    table.on('page.dt', function () {
+        // Store the current page number in sessionStorage
+        sessionStorage.setItem('tablePage', table.page.info().page);
+    });
+});
 
 </script>
 

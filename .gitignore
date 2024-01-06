@@ -35,3 +35,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /application/views/Backend/admin/newtable.php
 /application/views/Backend/admin/old-table.php
 /backup
+/assets/uploads/

@@ -61,7 +61,7 @@
 
                                                         <table
                                                             class="table table-striped table-bordered table-hover table-checkable order-column full-width"
-                                                            id="example4">
+                                                            id="example5">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="center">S.No</th>
@@ -583,9 +583,9 @@
                     position: 'top-right'
 
                     });
-        //        setTimeout(function(){
-        //  location.reload(true);
-        // },2000);
+               setTimeout(function(){
+         location.reload(true);
+        },2000);
 
 
         }
@@ -642,7 +642,7 @@
 
 
 
-//New Dec------------------------------------------------------------------------------------------------------------------
+//New Dec------------------------------------------------------------Approve December------------------------------------------------------
  $(document).on('click','#approve',function(){
         event.preventDefault();
         
@@ -694,6 +694,26 @@
      
         return false;
         })
+
+
+
+////New-------------------
+$(document).ready(function () {
+    // Check if there is a stored page number in sessionStorage
+    var savedPage = sessionStorage.getItem('tablePage');
+
+    // Initialize DataTable with the saved page number if available
+    var table = $('#example5').DataTable({
+        "pageLength": 10, // Set the desired number of rows per page
+        "displayStart": savedPage ? (parseInt(savedPage) * 10) : 0 // Set the saved page number or default to 0
+    });
+
+    // Event listener for page change
+    table.on('page.dt', function () {
+        // Store the current page number in sessionStorage
+        sessionStorage.setItem('tablePage', table.page.info().page);
+    });
+});
 
 
 </script>

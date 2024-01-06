@@ -219,7 +219,7 @@ $(document).ready(function() {
         event.preventDefault();
 
         $("#member_form_add").valid();
-        if($('#appointment_date').val() != '' &&  $('#services').val() != '' && $('#appointment_time').val() != ''  ){
+        //if($('#appointment_date').val() != '' &&  $('#services').val() != '' && $('#appointment_time').val() != ''  ){
        
         //Medical Conditions: 
         if($('#medical_conditions').val() == 'others'){
@@ -322,10 +322,7 @@ $(document).ready(function() {
         },
         });
        
-        }else{
-            //$('#date').next().html('<span class="error">This field is required</span>');//text("This field is required").addClass('error');
-          //  $('.error').text("This field is required");
-        }
+        //}
         return false;
         })
        //date

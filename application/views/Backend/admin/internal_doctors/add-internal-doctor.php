@@ -112,10 +112,10 @@
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
                                                 <div class="col-md-5" style="text-align: center;">
-                                                          <span  style="font-weight: bold;"> Hospital 
+                                                          <span  style="font-weight: bold;"> Work place 1   
                                                     
                                                 </span>
-                                             
+                                             <!-- Hospital -->
                                                 </div>
                                             </div>  
                                             <div class="form-group row">
@@ -124,7 +124,7 @@
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="hospital" id="hospital" data-required="1"
-                                                        placeholder="Enter  Hospital " class="form-control input-height" required />
+                                                        placeholder="Enter  Name " class="form-control input-height" required />
                                                 </div>
                                             </div>  
 
@@ -187,19 +187,20 @@
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3 " style="font-weight: bold;">  </label>
                                                 <div class="col-md-5" style="text-align: center;">
-                                                          <span  style="font-weight: bold;"> Clinic 
+                                                          <span  style="font-weight: bold;">  Work place 2  
                                                     
                                                 </span>
+                                                <!-- Clinic -->
                                              
                                                 </div>
                                             </div>  
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3"> Name 
-                                                    <span class="required"> * </span>
+                                                    <span class="required">  </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="clinic_name" id="clinic_name" data-required="1"
-                                                        placeholder="Enter  Clinic " class="form-control input-height" required />
+                                                        placeholder="Enter  Name " class="form-control input-height"  />
                                                 </div>
                                             </div>  
 
@@ -215,20 +216,20 @@
 
                                                <div class="form-group row">
                                                 <label class="control-label col-md-3"> Area Name 
-                                                    <span class="required"> * </span>
+                                                    <span class="required">  </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="clinic_area" id="clinic_area" data-required="1"
-                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                        placeholder="Enter  Area Name " class="form-control input-height"  />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3"> City
-                                                    <span class="required"> * </span>
+                                                    <span class="required"> </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="clinic_city" id="clinic_city" data-required="1"
-                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                        placeholder="Enter  City Name " class="form-control input-height"  />
                                                 </div>
                                             </div>  
                                             
@@ -245,27 +246,27 @@
                                             </div> -->
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
-                                                    <span class="required"> * </span>
+                                                    <span class="required"> </span>
                                                 </label>
                                                 <div class="col-md-2">
                                                     <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
-                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height"  />
                                                 </div>
                                                  <div class="col-md-1 text-center">
                                                     <span> to </span>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <input type="time" name="clinic_to_timing" id="clinic_to_timing" data-required="1"
-                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                        placeholder="Enter  Consultation Timings " class="form-control input-height"  />
                                                 </div>
                                             </div>
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3"> Consultation Fees 
-                                                    <span class="required"> * </span>
+                                                    <span class="required">  </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <input type="text" name="clinic_fees" id="clinic_fees" data-required="1"
-                                                        placeholder="Enter  Consultation Fees " class="form-control input-height" required />
+                                                        placeholder="Enter  Consultation Fees " class="form-control input-height"  />
                                                 </div>
                                             </div>
                                                 

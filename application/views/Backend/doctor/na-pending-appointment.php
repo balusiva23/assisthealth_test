@@ -653,7 +653,7 @@
 
 
 
-        if($("#services").val() != '' && $("#date").val() != '' && $("#time").val() != '' && $("#payment_status").val() != '' ){
+       // if($("#services").val() != '' && $("#date").val() != '' && $("#time").val() != '' && $("#payment_status").val() != '' ){
         $.ajax({
         type:'post',
         url: '<?php echo base_url("Doctor/update_ongoing_member");?>',
@@ -706,7 +706,7 @@
         },
         });
        
-        }
+       // }
         return false;
         }) 
        //suub profile
@@ -722,7 +722,7 @@
 
 
 
-        if($("#services1").val() != '' && $('#staticBackdrop1 [name="appointment_date"]').val() != '' && $('#staticBackdrop1 [name="appointment_time"]').val() != '' && $("#payment_status1").val() != '' ){
+        //if($("#services1").val() != '' && $('#staticBackdrop1 [name="appointment_date"]').val() != '' && $('#staticBackdrop1 [name="appointment_time"]').val() != '' && $("#payment_status1").val() != '' ){
         $.ajax({
         type:'post',
         url: '<?php echo base_url("Doctor/update_ongoing_member");?>',
@@ -775,7 +775,7 @@
         },
         });
        
-        }
+      //  }
         return false;
         })
 

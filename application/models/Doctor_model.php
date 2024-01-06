@@ -543,9 +543,13 @@ function make_query($filters)
                                     <div class="profile-userbuttons">
                                         <a  class="tblEditBtn" data-id="' . $doctor->id . '">
                                             <i class="fa fa-pencil"></i>
-                                        </a>
+                                        </a> 
+                                      
                                         <a href="#" class="delete tblDelBtn" data-id="' . $doctor->id . '">
                                             <i class="fa fa-trash-o"></i>
+                                        </a>
+                                          <a  class="tblViewBtn"  data-id="' . $doctor->id . '">
+                                            <i class="fa fa-eye" style="font-size: 12px; position: relative; line-height: 1; background-color: rgb(63,81,181); border-color: transparent; color: #ffffff; padding: 8px; height: 100%; border-radius: 5px;"></i>
                                         </a>
                                     </div>
                                 </div>

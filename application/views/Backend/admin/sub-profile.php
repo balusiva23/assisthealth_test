@@ -39,6 +39,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="text-right float-right" style="text-align: end;">
+                                <a type="button" href="<?=base_url('Admin/All_Members');?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-circle btn-primary" id="save_nav" >Back</a>
+                            </div>
                             <div class="tabbable-line">
 
                                 <div class="tab-content">

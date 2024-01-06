@@ -699,7 +699,7 @@
 
       
           
-          if($("#services").val() != '' && $("#date").val() != '' && $("#time").val() != '' && $("#payment_status").val() != '' ){
+          // if($("#services").val() != '' && $("#date").val() != '' && $("#time").val() != '' && $("#payment_status").val() != '' ){
 
         $.ajax({
         type:'post',
@@ -754,7 +754,7 @@
         },
         });
        
-       }
+       //}
         return false;
         })
        //sub profile
@@ -771,7 +771,7 @@
 
       
           
-          if($("#services1").val() != '' && $('#staticBackdrop1 [name="appointment_date"]').val() != '' && $("#time1").val() != '' && $("#payment_status1").val() != '' ){
+          // if($("#services1").val() != '' && $('#staticBackdrop1 [name="appointment_date"]').val() != '' && $("#time1").val() != '' && $("#payment_status1").val() != '' ){
           // alert()
         $.ajax({
         type:'post',
@@ -826,7 +826,7 @@
         },
         });
        
-       }
+      // }
         return false;
         })
 
