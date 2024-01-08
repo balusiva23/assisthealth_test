@@ -3120,7 +3120,14 @@ public function Book_member_appoinment()
 		$pdf->Output($outputString.'_membership_card.pdf', 'I');
 		}
 
+	   // ------------------------------ ID CARD  New---------------------------------------------------- //
+public function generate_IdCard1()
+{
+	$data['m_name'] = base64_decode($this->input->get('m_name'));
+		$data['m_id'] = base64_decode($this->input->get('m_id'));
 
+  $this->load->view('Backend/admin/IdCard/memberID',$data);
+}
 
 
 }

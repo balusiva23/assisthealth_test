@@ -453,7 +453,7 @@
 <script type="text/javascript">
         $(document).ready(function() {
        // $('.tblEditBtn').click(function() {
-             $('#example4').on('click', '.tblEditBtn', function() {
+             $('#example5').on('click', '.tblEditBtn', function() {
             // Get the data attributes from the button
             var id = $(this).data('id');
        
@@ -571,9 +571,9 @@
         rowToUpdate.find(".center:eq(4)").text(data.member.address);
         rowToUpdate.find(".center:eq(5) a").text(data.member.number).attr("href", "tel:" + data.member.number);
         rowToUpdate.find(".center:eq(6) ").text(data.member.membership);
-        //  setTimeout(function(){
-        //  location.reload(true);
-        // },2000);
+         setTimeout(function(){
+         location.reload(true);
+        },2000);
        
        }else if(data.status == 'error'){
               $.wnoty({
