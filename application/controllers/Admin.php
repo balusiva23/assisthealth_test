@@ -3778,7 +3778,7 @@ public function update_admin()
 	        } else {
 	        
 
-			if ( $this->Doctor_model->is_number_duplicate($number)) {
+			if ( $this->Doctor_model->is_number_duplicate_internal_doctors($number)) {
 				
 					echo json_encode(array('status' => 'error', 'message' => 'Number already exists'));
 				

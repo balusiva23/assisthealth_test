@@ -225,6 +225,14 @@ class Doctor_model extends CI_Model {
            return $query->num_rows() > 0;
        }
       
+      public function is_number_duplicate_internal_doctors($number)
+       {
+           //$this->db->where('number', $number);
+           $this->db->where(array('contact_number'=> $number,'isActive'=>1));
+           $query = $this->db->get('internal_doctors');
+           return $query->num_rows() > 0;
+       }
+      
       //update duplicate check
        public function is_email_duplicate_except($email, $id)
        {
