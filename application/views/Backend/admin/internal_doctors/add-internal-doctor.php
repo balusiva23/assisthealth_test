@@ -234,16 +234,7 @@
                                             </div>  
                                             
                                           
-                                         <!-- 
-                                           <div class="form-group row">
-                                                <label class="control-label col-md-3">  Consultation Timings 
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
-                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
-                                                </div>
-                                            </div> -->
+                                        
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> </span>
@@ -359,9 +350,117 @@
         }
       });
       });
+
+    //Save doctor
+
+    //     $(document).on('click','#save_nav',function(){
+    //     event.preventDefault();
+    //     $("#add_nav").valid();
+       
+    //      var name = $("input[name='firstname']").val();
+    //     //var email = $("input[name='lastname']").val(); // Note: There is no 'lastname' field, it seems like a mistake
+    //     var gender = $("select[name='gender']").val();
+    //     var mobile = $("input[name='number']").val();
+    //     var qualification = $("#qualification").val();
+    //     var speciality = $("#speciality").val();
+    //     var specializedIn = $("#specializedIn").val();
+    //     var experience = $("#experience").val();
+    //     var hospital = $("#hospital").val();
+    //     //var address = $("textarea[name='address']").val();
+    //     var timing = $("#timing").val();
+    //     var fees = $("#fees").val();
+    //     var contactNumber = $("#number").val();
+    //     var profilePicture = $("input[type='file']").val();
+
+    // // Check if all required fields are filled out
+    // if (name !== '' &&  gender !== '' && mobile !== '' && hospital !== '' && qualification !== '' && speciality !== '' && specializedIn !== '' && experience !== '' && timing !== '' && fees !== '' && contactNumber !== '' && profilePicture !== '') {
+    //         // Your logic or action when all required fields are not empty
+
+
+    //     $.ajax({
+    //     type:'post',
+    //     url: '<?php echo base_url("Admin/Save_internal_doctor");?>',
+    //     data: new FormData($("#add_nav")[0]),
+    //     contentType: false,
+    //     processData: false, 
+    //     success:function(resp){
+    //     var data=$.parseJSON(resp);
+    //     if(data.status == 'success'){
+    //     $('#add_nav')[0].reset();
+    //     $.wnoty({
+    //     type: 'success',
+    //     message: data.message,
+    //     autohideDelay: 1000,
+    //     position: 'top-right'
+
+    //     });
+    //     setTimeout(function(){
+    //     window.location.href = '<?php echo base_url()?>Admin/All_InternalDoctors';
+    //     },2000);
+
+    //     }else if(data.status == 'error'){
+
+    //       $.wnoty({
+    //             type: 'error',
+    //             message: data.message,
+    //             autohideDelay: 2000,
+    //             position: 'top-right'
+
+    //             });
+    //     }
+    //     },
+    //     });
+    //     } else {
+
+    //     }
+
+    //     return false;
+    //     })    
+
+
+
         $(document).on('click','#save_nav',function(){
         event.preventDefault();
         $("#add_nav").valid();
+
+            // Get values from Workspace 1
+            var hospitalName = $('#hospital').val();
+            var hospitalArea = $('#hospital_area').val();
+            var hospitalCity = $('#hospital_city').val();
+            var hospitalTiming = $('#timing').val();
+            var hospitalToTiming = $('#hospital_to_timing').val();
+            var hospitalFees = $('#fees').val();
+
+            // Get values from Workspace 2
+            var clinicName = $('#clinic_name').val();
+            var clinicArea = $('#clinic_area').val();
+            var clinicCity = $('#clinic_city').val();
+            var clinicTiming = $('#clinic_timing').val();
+            var clinicToTiming = $('#clinic_to_timing').val();
+            var clinicFees = $('#clinic_fees').val();
+
+            // Check if values in Workspace 1 and Workspace 2 are equal
+          if (
+            (hospitalName === clinicName && clinicName !== '') ||
+            (hospitalArea === clinicArea && clinicArea !== '') ||
+            (hospitalCity === clinicCity && clinicCity !== '') ||
+            (hospitalTiming === clinicTiming && clinicTiming !== '') ||
+            (hospitalToTiming === clinicToTiming && clinicToTiming !== '') ||
+            (hospitalFees === clinicFees && clinicFees !== '')
+           ) {
+                // Display an error message for each field name
+                 //  $('#add_nav')[0].reset();
+                $.wnoty({
+                    type: 'error',
+                    message: 'Workspace 1 and Workspace 2 values cannot be equal.',
+                    autohideDelay: 3000,
+                    position: 'top-right'
+                });
+          
+                return false; // Prevent form submission
+            }
+
+
        
          var name = $("input[name='firstname']").val();
         //var email = $("input[name='lastname']").val(); // Note: There is no 'lastname' field, it seems like a mistake
@@ -424,4 +523,5 @@
         })
 
   
+
 </script>
