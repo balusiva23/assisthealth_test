@@ -803,13 +803,16 @@ $(document).ready(function () {
         // Clear all dropdown selections
         $('#name, #speciality, #hospital, #timing, #fees, #hospital_area, #clinic_area, #hospital_city').val('');
 
+        // Trigger the change event for each dropdown to update the displayed text
+        $('#name, #speciality, #hospital, #timing, #fees, #hospital_area, #clinic_area, #hospital_city').change();
+
         // Clear the filters array
         var filtersArray = [];
         
         // Trigger the filter_data function with the cleared filters
         filter_data(1);
     });
-    
+
 
     filter_data(1);
 
