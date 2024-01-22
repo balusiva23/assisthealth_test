@@ -4093,12 +4093,12 @@ public function update_admin()
 	     // New
 		function fetch_data()
 		{
-			sleep(2);
+			//sleep(2);
 			
-			$name = $this->input->post('name');
-			$speciality = $this->input->post('speciality');
-			$timings = $this->input->post('timings');
-			$fees = $this->input->post('fees');
+			// $name = $this->input->post('name');
+			// $speciality = $this->input->post('speciality');
+			// $timings = $this->input->post('timings');
+			// $fees = $this->input->post('fees');
 
 
 			$filters = $this->input->post('filters');
@@ -4107,7 +4107,7 @@ public function update_admin()
 
 			$this->load->library("pagination");
 			$config = array();
-			$config["base_url"] = "#";
+			$config["base_url"] = base_url();// "#";
 			//$config["total_rows"] = $this->Property_model->count_all($minimum_price, $maximum_price, $brand, $ram, $storage);
 			//$config["total_rows"] = $this->Doctor_model->count_all($name, $speciality,$timings,$fees);
 			$config["total_rows"] = $this->Doctor_model->count_all($filters);

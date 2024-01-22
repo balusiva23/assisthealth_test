@@ -180,8 +180,7 @@
                                     <option value="<?= $timing ?>"><?= $formattedTime ?></option>
                                 <?php } ?>
                             </select>-->  
-                    
-                    
+                
                     
            <select class="form-control input-height search timing" name="timing" id="timing" required>
     <option value="">Select...</option>
@@ -259,7 +258,10 @@
                             </select>
                         </div>
 
-
+                       <div class="form-group col-md-2">
+                         <label class="control-label"><span class="required"> </span></label>
+                        <button id="resetFilters" class="btn btn-primary mt-4">Reset</button>
+                    </div>
                             </div>
 
                             <div class="tabbable-line">
@@ -788,12 +790,33 @@ $(document).ready(function () {
     $('#name, #speciality,#hospital, #timing, #fees ,#hospital_area,#clinic_area,#hospital_city').change(function () {
       // Remove selected options in other dropdowns
      //   $('#name, #speciality, #hospital, #timing, #fees').not(this).val('');
+
+        // Step 6: Clear Filters Array Before Applying the Next Filter
+        var filtersArray = [];
+
         filter_data(1);
     });
+
+
+      // Add a click event for the reset button
+    $('#resetFilters').click(function () {
+        // Clear all dropdown selections
+        $('#name, #speciality, #hospital, #timing, #fees, #hospital_area, #clinic_area, #hospital_city').val('');
+
+        // Clear the filters array
+        var filtersArray = [];
+        
+        // Trigger the filter_data function with the cleared filters
+        filter_data(1);
+    });
+    
 
     filter_data(1);
 
     function filter_data(page) {
+         // Step 6 (continued): Clear Filters Array Before Applying the Next Filter
+        var filtersArray = get_filters();
+
         $('.filter_data').html('<div id="loading"></div>');
 
         $('#pagination_link').hide();
@@ -807,7 +830,8 @@ $(document).ready(function () {
             dataType: "JSON",
             data: {
                 action: action,
-                filters: filters
+               // filters: filters
+                filters: filtersArray
             },
             success: function (data) {
                 $('.filter_data').html(data.product_list);
@@ -816,41 +840,42 @@ $(document).ready(function () {
             }
         });
     }
+
+    //new ----------------------
+      function get_filters() {
+        var filtersArray = [];
+
+        // Assuming your select elements have IDs: 'name', 'speciality', 'timing', 'fees'
+        $('#name, #speciality, #hospital, #timing, #fees, #hospital_area, #clinic_area, #hospital_city').each(function () {
+            var dropdown_id = $(this).attr('id');
+            var dropdown_value = $(this).val();
+
+            // Push an object with dropdown_id and dropdown_value into the filters array
+            filtersArray.push({ id: dropdown_id, value: dropdown_value });
+        });
+
+        return filtersArray;
+    }
+    //new-----------------
     
-    function get_filters() {
-    var filters = [];
+//     function get_filters() {
+//     var filters = [];
 
-    // Assuming your select elements have IDs: 'name', 'speciality', 'timing', 'fees'
-    $('#name, #speciality, #hospital, #timing, #fees,#hospital_area,#clinic_area,#hospital_city').each(function () {
-        var dropdown_id = $(this).attr('id');
-        var dropdown_value = $(this).val();
+//     // Assuming your select elements have IDs: 'name', 'speciality', 'timing', 'fees'
+//     $('#name, #speciality, #hospital, #timing, #fees,#hospital_area,#clinic_area,#hospital_city').each(function () {
+//         var dropdown_id = $(this).attr('id');
+//         var dropdown_value = $(this).val();
 
-        // Push an object with dropdown_id and dropdown_value into the filters array
-        filters.push({ id: dropdown_id, value: dropdown_value });
-    });
+//         // Push an object with dropdown_id and dropdown_value into the filters array
+//         filters.push({ id: dropdown_id, value: dropdown_value });
+//     });
 
     
 
-    return filters;
-}
+//     return filters;
+// }
 
 
-    // function get_filters() {
-    //     var filters = {};
-
-    //     // Assuming your select elements have IDs: 'name', 'speciality', 'timing', 'fees'
-    //     $('#name, #speciality,#hospital, #timing, #fees').each(function () {
-    //         var dropdown_id = $(this).attr('id');
-    //          var dropdown_value = $(this).val();
-
-    //        // filters[dropdown_id] = $(this).val();
-    //      filters[dropdown_id] = dropdown_value;
-    //     });
-
-    //        console.log('Filters:', filters); 
-
-    //     return filters;
-    // }
 
     $(document).on("click", ".pagination li a", function (event) {
         event.preventDefault();

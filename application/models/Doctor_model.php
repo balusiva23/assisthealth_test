@@ -354,163 +354,70 @@ class Doctor_model extends CI_Model {
         }
     }
 
-//     public function getProperties($filter_data, $offset, $limit) {
-//     $this->db->select('*');
-//     $this->db->from('properties'); // Replace with your actual table name
 
-//     if (!empty($filter_data['propertyStatus'])) {
-//         $this->db->where('propertyStatus', $filter_data['propertyStatus']);
-//     }
-
-//     // Add more filter conditions here...
-
-//     $this->db->limit($limit, $offset);
-//     $query = $this->db->get();
-
-//     return $query->result();
-// }
-
-    // New -----------------------------
-
-//    function make_query($name, $speciality,$timings,$fees)
+    //18/12/23
+// function make_query($filters)
 // {
-//     $query = "
-//     SELECT * FROM Internal_doctors 
-//     WHERE isActive = '1' 
-//     ";
-
+//     $query = "SELECT * FROM internal_doctors WHERE isActive = '1' ";
 //     $conditions = [];
 
-//     if (!$speciality) {
-//         $speciality_filter = implode("','", $speciality);
-//         $conditions[] = "speciality IN ('" . $speciality_filter . "')";
-//     }
+//     foreach ($filters as $filter) {
+//         $field = $filter['id'];
+//         $value = $this->db->escape($filter['value']);
 
-//     if (!$name){
-//         $gender_filter = implode("','", $name);
-//         $conditions[] = "name IN ('" . $gender_filter . "')";
-//     }
-
-//     if (!$timings) {
-//         $qualification_filter = implode("','", $timings);
-//         $conditions[] = "timing IN ('" . $qualification_filter . "')";
-//     }
-
-//     if (!$fees) {
-//         $experience_filter = implode("','", $fees);
-//         $conditions[] = "fees IN ('" . $experience_filter . "')";
+//         // Skip empty strings and NULL values
+//         if ($value !== "''" && $value !== "NULL") {
+//             // You may need to validate or sanitize the input to prevent SQL injection
+//             $conditions[] = "$field = $value";
+//         }
 //     }
 
 //     if (!empty($conditions)) {
-//         $query .= " AND (" . implode(" AND ", $conditions) . ")";
+//         $query .= " AND " . implode(" AND ", $conditions);
 //     }
-//     //print_r($query);
+//     //  if (!empty($conditions)) {
+//     //     $query .= " AND " . implode(" OR ", $conditions);
+//     // }
+
+// ;
 
 //     return $query;
 // }
 
-// function fetch_data($limit, $start, $name, $speciality,$timings,$fees)
-// {
-//     $query = $this->make_query($name, $speciality,$timings,$fees);
 
-//     $query .= ' LIMIT ' . $start . ', ' . $limit;
-
-//     $data = $this->db->query($query);
-
-//     $output = '';
-
-//     if ($data->num_rows() > 0) {
-//         foreach ($data->result() as $doctor) {
-           
-//              $output .= '
-//                 <div class="col-md-4">
-//                     <div class="card" style="min-width: 530px;
-//     min-height: 365px;">
-//                         <div class="card-body no-padding">
-//                             <div class="doctor-profile">
-//                                 <img src="' . base_url() . '/assets/uploads/internal_doctors/' . $doctor->profile_picture . '" class="doctor-pic" alt="">
-//                                 <div class="profile-usertitle">
-//                                     <div class="doctor-name">' . $doctor->name . '</div>
-//                                     <div class="name-center">' . $doctor->speciality . '</div>
-//                                 </div>
-//                                 <p>' . $doctor->address . '<br /></p>
-//                                 <div>
-//                                     <p><i class="fa fa-phone"></i><a href="tel:' . $doctor->contact_number . '"> ' . $doctor->contact_number . '</a></p>
-//                                 </div>
-//                                 <div class="profile-userbuttons">
-//                                     <a href="#" class="tblEditBtn">
-//                                         <i class="fa fa-pencil"></i>
-//                                     </a>
-//                                     <a href="#" class="delete tblDelBtn">
-//                                         <i class="fa fa-trash-o"></i>
-//                                     </a>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>';
-//         }
-//     } else {
-//         $output = '<h3>No Data Found</h3>';
-//     }
-
-//     return $output;
-// }
-
-// function count_all($name, $speciality,$timings,$fees)
-// {
-//     $query = $this->make_query($name, $speciality,$timings,$fees);
-//     $data = $this->db->query($query);
-//     return $data->num_rows();
-// }
-
-
-// new method
-    //     function make_query($filters)
-    // {
-    //     $query = "SELECT * FROM Internal_doctors WHERE isActive = '1' ";
-    //     $conditions = [];
-
-    //     foreach ($filters as $field => $value) {
-    //         if (!empty($value)) {
-    //             $conditions[] = "$field = '$value'";
-    //         }
-    //     }
-
-    //     if (!empty($conditions)) {
-    //         $query .= " AND " . implode(" AND ", $conditions);
-    //     }
-
-    //     return $query;
-    // }
-    //18/12/23
+    //22/1/24
 function make_query($filters)
 {
-    $query = "SELECT * FROM internal_doctors WHERE isActive = '1' ";
-    $conditions = [];
+    // Initial Active Record query
+    $this->db->select('*')->from('internal_doctors')->where('isActive', '1');
 
+    // Loop through filters and add conditions to the WHERE clause
     foreach ($filters as $filter) {
         $field = $filter['id'];
-        $value = $this->db->escape($filter['value']);
+        $value = $this->db->escape_str($filter['value']);
 
-        // Skip empty strings and NULL values
-        if ($value !== "''" && $value !== "NULL") {
-            // You may need to validate or sanitize the input to prevent SQL injection
-            $conditions[] = "$field = $value";
+        // Skip empty values
+        if ($value !== '') {
+            // Use query bindings to prevent SQL injection
+            $this->db->where($field, $value);
+
+            // Alternatively, you can add conditions to the array if you prefer
+            // $conditions[] = "$field = '$value'";
         }
     }
 
-    if (!empty($conditions)) {
-        $query .= " AND " . implode(" AND ", $conditions);
-    }
-    //  if (!empty($conditions)) {
-    //     $query .= " AND " . implode(" OR ", $conditions);
+    // Optionally, you can use the conditions array to build the WHERE clause
+    // if (!empty($conditions)) {
+    //     $this->db->where(implode(" AND ", $conditions));
     // }
 
-    //print_r($query);
+    // Get the final query as a string
+    $query = $this->db->get_compiled_select();
 
+    // Return the final query
     return $query;
 }
+
 
 
     function fetch_data($limit, $start, $filters)

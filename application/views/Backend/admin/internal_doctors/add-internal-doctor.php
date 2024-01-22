@@ -441,12 +441,7 @@
 
             // Check if values in Workspace 1 and Workspace 2 are equal
           if (
-            (hospitalName === clinicName && clinicName !== '') ||
-            (hospitalArea === clinicArea && clinicArea !== '') ||
-            (hospitalCity === clinicCity && clinicCity !== '') ||
-            (hospitalTiming === clinicTiming && clinicTiming !== '') ||
-            (hospitalToTiming === clinicToTiming && clinicToTiming !== '') ||
-            (hospitalFees === clinicFees && clinicFees !== '')
+            (hospitalName.toLowerCase() === clinicName.toLowerCase() && clinicName !== '') 
            ) {
                 // Display an error message for each field name
                  //  $('#add_nav')[0].reset();
@@ -458,7 +453,26 @@
                 });
           
                 return false; // Prevent form submission
-            }
+            }  
+           //  if (
+           //  (hospitalName === clinicName && clinicName !== '') ||
+           //  (hospitalArea === clinicArea && clinicArea !== '') ||
+           //  (hospitalCity === clinicCity && clinicCity !== '') ||
+           //  (hospitalTiming === clinicTiming && clinicTiming !== '') ||
+           //  (hospitalToTiming === clinicToTiming && clinicToTiming !== '') ||
+           //  (hospitalFees === clinicFees && clinicFees !== '')
+           // ) {
+           //      // Display an error message for each field name
+           //       //  $('#add_nav')[0].reset();
+           //      $.wnoty({
+           //          type: 'error',
+           //          message: 'Workspace 1 and Workspace 2 values cannot be equal.',
+           //          autohideDelay: 3000,
+           //          position: 'top-right'
+           //      });
+          
+           //      return false; // Prevent form submission
+           //  }
 
 
        
