@@ -480,21 +480,21 @@
 
                           <div class="form-group row">
                                                 <label class="control-label col-md-3"> Area Name 
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="hospital_area" id="hospital_area" data-required="1"
-                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                        placeholder="Enter  Area Name " class="form-control input-height"  />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3"> City
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
                                                    <!--  <input type="text" name="hospital_city" id="hospital_city" data-required="1"
                                                         placeholder="Enter  City Name " class="form-control input-height" required /> -->
-                                                         <select class="form-control input-height"  name="hospital_city" id="" required>
+                                                         <select class="form-control input-height"  name="hospital_city" id="" >
                                                               <option value="Bangalore">Bangalore</option>
                                                               <option value="Mysore">Mysore</option>
                                                               <option value="Tumkur">Tumkur</option>
@@ -513,10 +513,10 @@
 
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3">Consultation Timings slots
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
-                                                    <select class="form-control input-height" name="timing" id=""  required>
+                                                    <select class="form-control input-height" name="timing" id=""  >
                                                         <option value="">Select...</option>
                                                         <?php foreach ($timeSlots as $key => $value) { 
                                                                 $Start_timestamp = strtotime( $value->start_time);
@@ -577,11 +577,11 @@
 
                               <div class="form-group row">
                                                 <label class="control-label col-md-3"> Name 
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="clinic_name" id="clinic_name" data-required="1"
-                                                        placeholder="Enter  Name " class="form-control input-height" required />
+                                                        placeholder="Enter  Name " class="form-control input-height"  />
                                                 </div>
                                             </div>  
 
@@ -597,22 +597,22 @@
 
                                                <div class="form-group row">
                                                 <label class="control-label col-md-3"> Area Name 
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="clinic_area" id="clinic_area" data-required="1"
-                                                        placeholder="Enter  Area Name " class="form-control input-height" required />
+                                                        placeholder="Enter  Area Name " class="form-control input-height"  />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3"> City
-                                                    <span class="required"> * </span>
+                                                    <span class="required"></span>
                                                 </label>
                                                 <div class="col-md-8">
                                                    <!--  <input type="text" name="clinic_city" id="clinic_city" data-required="1"
                                                         placeholder="Enter  City Name " class="form-control input-height" required /> -->
 
-                                                         <select class="form-control input-height"  name="clinic_city" id="" required>
+                                                         <select class="form-control input-height"  name="clinic_city" id="" >
                                                               <option value="Bangalore">Bangalore</option>
                                                               <option value="Mysore">Mysore</option>
                                                               <option value="Tumkur">Tumkur</option>
