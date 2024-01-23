@@ -180,31 +180,59 @@
                                     <option value="<?= $timing ?>"><?= $formattedTime ?></option>
                                 <?php } ?>
                             </select>-->  
+
+
+                            <!-- New ----------------- -->
+
+                                    <select class="form-control input-height search timing" name="timing" id="timing"  required>
+                                        <option value="">Select...</option>
+                                        <?php foreach ($timeSlots as $key => $value) { 
+                                                $Start_timestamp = strtotime( $value->start_time);
+
+                                                // Format the timestamp in your desired format
+                                                $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+                                                //ENd
+
+                                                $end_timestamp = strtotime( $value->end_time);
+
+                                                // Format the timestamp in your desired format
+                                                $end_formattedTime = date('g:i A', $end_timestamp);
+
+                                            ?>
+                                              <option value="<?php echo  $value->id ?>"><?php echo  $value->slot ?> ( <?php  echo $Start_formattedTime.' - '.$end_formattedTime ?>) </option>
+                                      <?php  } ?>
+                                       
+                                    
+                                    </select>
+                                              
+
+                            <!-- New ----------------- -->
                 
                     
-           <select class="form-control input-height search timing" name="timing" id="timing" required>
-    <option value="">Select...</option>
-    <?php
-    $uniqueTimings = array_unique(array_column($navigators, 'timing'));
-    foreach ($uniqueTimings as $timing) { 
+                       <!--         <select class="form-control input-height search timing" name="timing" id="timing" required>
+                        <option value="">Select...</option>
+                        <?php
+                        $uniqueTimings = array_unique(array_column($navigators, 'timing'));
+                        foreach ($uniqueTimings as $timing) { 
 
-        // Assuming $timing is in HH:MM:SS format
-        $formattedTime = date("h:i A", strtotime($timing));
+                            // Assuming $timing is in HH:MM:SS format
+                            $formattedTime = date("h:i A", strtotime($timing));
 
-        // Find the corresponding hospital_to_timing value
-        $hospitalToTiming = ''; // Initialize to an empty string, update this based on your actual data structure
+                            // Find the corresponding hospital_to_timing value
+                            $hospitalToTiming = ''; // Initialize to an empty string, update this based on your actual data structure
 
-        // Loop through the navigators object to find the corresponding hospital_to_timing
-        foreach ($navigators as $navigator) {
-            if ($navigator->timing == $timing) {
-                $hospitalToTiming = $navigator->hospital_to_timing;
-                break;
-            }
-        }
-        ?>
-        <option value="<?= $timing ?>"><?= $formattedTime ?> - <?= ($hospitalToTiming)  ? date("h:i A", strtotime($hospitalToTiming)) : $hospitalToTiming ?></option>
-    <?php } ?>
-</select>
+                            // Loop through the navigators object to find the corresponding hospital_to_timing
+                            foreach ($navigators as $navigator) {
+                                if ($navigator->timing == $timing) {
+                                    $hospitalToTiming = $navigator->hospital_to_timing;
+                                    break;
+                                }
+                            }
+                            ?>
+                            <option value="<?= $timing ?>"><?= $formattedTime ?> - <?= ($hospitalToTiming)  ? date("h:i A", strtotime($hospitalToTiming)) : $hospitalToTiming ?></option>
+                        <?php } ?>
+                    </select> -->
 
 
                       </div>
@@ -223,7 +251,7 @@
                         <!-- New -->
                         <div class="form-group col-md-2">
                             <label class="control-label">City <span class="required"> </span></label>
-                            <select class="form-control input-height search hospital_city" name="hospital_city" id="hospital_city" required>
+                            <!-- <select class="form-control input-height search hospital_city" name="hospital_city" id="hospital_city" required>
                                 <option value="">Select...</option>
                                 <?php
                                 $uniqueFees = array_unique(array_column($navigators, 'hospital_city'));
@@ -231,6 +259,22 @@
                                     if(!empty($hospital_city)){ ?>
                                     <option value="<?= $hospital_city ?>"><?= $hospital_city ?></option>
                                 <?php } } ?>
+                            </select> -->
+
+                              <select class="form-control input-height search hospital_city"  name="hospital_city" id="hospital_city" required>
+                                 <option value="">Select...</option>
+                              <option value="Bangalore">Bangalore</option>
+                              <option value="Mysore">Mysore</option>
+                              <option value="Tumkur">Tumkur</option>
+                              <option value="Bellary">Bellary</option>
+                              <option value="Hyderabad">Hyderabad</option>
+                              <option value="Chennai">Chennai</option>
+                              <option value="Nellore">Nellore</option>
+                              <option value="Anantapur">Anantapur</option>
+                              <option value="Shivamogga">Shivamogga</option>
+                              <option value="Chikkamagaluru">Chikkamagaluru</option>
+                              <option value="Hassan">Hassan</option>
+                              <option value="Chitradurga">Chitradurga</option>
                             </select>
                         </div>
                          <div class="form-group col-md-2">
@@ -448,12 +492,56 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-8">
-                                                    <input type="text" name="hospital_city" id="hospital_city" data-required="1"
-                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                   <!--  <input type="text" name="hospital_city" id="hospital_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required /> -->
+                                                         <select class="form-control input-height"  name="hospital_city" id="" required>
+                                                              <option value="Bangalore">Bangalore</option>
+                                                              <option value="Mysore">Mysore</option>
+                                                              <option value="Tumkur">Tumkur</option>
+                                                              <option value="Bellary">Bellary</option>
+                                                              <option value="Hyderabad">Hyderabad</option>
+                                                              <option value="Chennai">Chennai</option>
+                                                              <option value="Nellore">Nellore</option>
+                                                              <option value="Anantapur">Anantapur</option>
+                                                              <option value="Shivamogga">Shivamogga</option>
+                                                              <option value="Chikkamagaluru">Chikkamagaluru</option>
+                                                              <option value="Hassan">Hassan</option>
+                                                              <option value="Chitradurga">Chitradurga</option>
+                                                            </select>
                                                 </div>
                                             </div>  
 
-                        <div class="form-group row">
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3">Consultation Timings slots
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control input-height" name="timing" id=""  required>
+                                                        <option value="">Select...</option>
+                                                        <?php foreach ($timeSlots as $key => $value) { 
+                                                                $Start_timestamp = strtotime( $value->start_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+                                                                //ENd
+
+                                                                $end_timestamp = strtotime( $value->end_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $end_formattedTime = date('g:i A', $end_timestamp);
+
+                                                            ?>
+                                                              <option value="<?php echo  $value->id ?>"><?php echo  $value->slot ?> ( <?php  echo $Start_formattedTime.' - '.$end_formattedTime ?>) </option>
+                                                      <?php  } ?>
+                                                       
+                                                    
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                  <!--       <div class="form-group row">
                             <label class="control-label col-md-3"> Consultation Timings
                                 <span class="required"></span>
                             </label>
@@ -466,7 +554,7 @@
                             <div class="col-md-3">
                                 <input type="time" name="hospital_to_timing" id="hospital_to_timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label class="control-label col-md-3">Consultation Fees
@@ -521,22 +609,61 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-8">
-                                                    <input type="text" name="clinic_city" id="clinic_city" data-required="1"
-                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                   <!--  <input type="text" name="clinic_city" id="clinic_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required /> -->
+
+                                                         <select class="form-control input-height"  name="clinic_city" id="" required>
+                                                              <option value="Bangalore">Bangalore</option>
+                                                              <option value="Mysore">Mysore</option>
+                                                              <option value="Tumkur">Tumkur</option>
+                                                              <option value="Bellary">Bellary</option>
+                                                              <option value="Hyderabad">Hyderabad</option>
+                                                              <option value="Chennai">Chennai</option>
+                                                              <option value="Nellore">Nellore</option>
+                                                              <option value="Anantapur">Anantapur</option>
+                                                              <option value="Shivamogga">Shivamogga</option>
+                                                              <option value="Chikkamagaluru">Chikkamagaluru</option>
+                                                              <option value="Hassan">Hassan</option>
+                                                              <option value="Chitradurga">Chitradurga</option>
+                                                            </select>
                                                 </div>
                                             </div>  
                                             
-                                          
-                                         
-                                         <!--   <div class="form-group row">
-                                                <label class="control-label col-md-3">  Consultation Timings 
-                                                    <span class="required"> * </span>
+
+
+                                              <div class="form-group row">
+                                                <label class="control-label col-md-3">Consultation Timings slots
+                                                    <span class="required"> </span>
                                                 </label>
                                                 <div class="col-md-8">
-                                                    <input type="time" name="clinic_timing" id="clinic_timing" data-required="1"
-                                                        placeholder="Enter  Consultation Timings " class="form-control input-height" required />
+                                                    <select class="form-control input-height" name="clinic_timing" id=""  >
+                                                        <!-- clinic_timing -->
+                                                        <option value="">Select...</option>
+                                                        <?php foreach ($timeSlots as $key => $value) { 
+                                                                $Start_timestamp = strtotime( $value->start_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+                                                                //ENd
+
+                                                                $end_timestamp = strtotime( $value->end_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $end_formattedTime = date('g:i A', $end_timestamp);
+
+                                                            ?>
+                                                              <option value="<?php echo  $value->id ?>" ><?php echo  $value->slot ?> ( <?php  echo $Start_formattedTime.' - '.$end_formattedTime ?>) </option>
+                                                      <?php  } ?>
+                                                       
+                                                    
+                                                    </select>
                                                 </div>
-                                            </div> -->
+                                            </div> 
+                                          
+                                 
+
+<!-- 
                                               <div class="form-group row">
                                     <label class="control-label col-md-3"> Consultation Timings
                                         <span class="required"></span>
@@ -551,6 +678,10 @@
                                         <input type="time" name="clinic_to_timing" id="clinic_to_timing" data-required="1" placeholder="Enter Consultation Timings " class="form-control input-height" />
                                     </div>
                                 </div>
+                                            -->  
+
+
+
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3"> Consultation Fees 
                                                     <span class="required"> * </span>
@@ -1087,7 +1218,10 @@ function toggleIntro(button) {
                     $('#staticBackdrop_doc .specializedIn').text(response.specialized_in);
                     $('#staticBackdrop_doc .experience').text(response.experience);
                     $('#staticBackdrop_doc .address').text(response.address);
-                    $('#staticBackdrop_doc .timing').text(formatTime(response.timing));
+                   // $('#staticBackdrop_doc .timing').text(formatTime(response.timing));
+
+                    $('#staticBackdrop_doc .timing').text(response.time_slot1); //time 1
+
                     $('#staticBackdrop_doc .fees').text(parseFloat(response.fees));
 
                     $('#staticBackdrop_doc .number').text(response.contact_number);
@@ -1096,14 +1230,15 @@ function toggleIntro(button) {
 
                     $('#staticBackdrop_doc .clinic_name').text(response.clinic_name);
                     $('#staticBackdrop_doc .clinic_address').text(response.clinic_address);
-                    $('#staticBackdrop_doc .clinic_timing').text(formatTime(response.clinic_timing));
+                   // $('#staticBackdrop_doc .clinic_timing').text(formatTime(response.clinic_timing));
+                    $('#staticBackdrop_doc .clinic_timing').text(response.time_slot2); // time 2
                     $('#staticBackdrop_doc .clinic_fees').text(parseFloat(response.clinic_fees));
                     $('#staticBackdrop_doc .hospital_city').text(response.hospital_city);
                     $('#staticBackdrop_doc .clinic_area').text(response.clinic_area);
                     $('#staticBackdrop_doc .clinic_city').text(response.clinic_city);
                     $('#staticBackdrop_doc .hospital_area').text(response.hospital_area);
-                   $('#staticBackdrop_doc .clinic_to_timing').text(' to ' +formatTime(response.clinic_to_timing));
-                $('#staticBackdrop_doc .hospital_to_timing').text(' to ' + formatTime(response.hospital_to_timing));
+                //    $('#staticBackdrop_doc .clinic_to_timing').text(' to ' +formatTime(response.clinic_to_timing));
+                // $('#staticBackdrop_doc .hospital_to_timing').text(' to ' + formatTime(response.hospital_to_timing));
 
 
                       if(response.profile_picture){

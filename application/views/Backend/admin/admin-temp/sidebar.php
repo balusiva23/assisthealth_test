@@ -170,11 +170,13 @@
                                 </ul>
                             </li>
 
+                            <!-- NEw ------------------------------------------- -->
+
                                      <!--Internal Doctors  -->
                              <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"><i data-feather="book"></i>
                                     <span class="title">Empanelled Doctors</span><span class="arrow"></span></a>
-                                <ul class="sub-menu " <?= $this->uri->segment(2) === 'Add_InternalDoctor' || $this->uri->segment(2) === 'All_InternalDoctors'|| $this->uri->segment(2) === 'Assign_Doctors' ? 'style="display: block;"' : '' ?>>
+                                <ul class="sub-menu " <?= $this->uri->segment(2) === 'Add_InternalDoctor' || $this->uri->segment(2) === 'All_InternalDoctors'|| $this->uri->segment(2) === 'Time_slots' ? 'style="display: block;"' : '' ?>>
 
                                     <li class="nav-item  <?= $this->uri->segment(2) === 'Add_InternalDoctor' ? 'active' : '' ?>">
                                         <a href="<?php echo base_url(); ?>Admin/Add_InternalDoctor" class="nav-link "> <span class="title">Add
@@ -189,12 +191,12 @@
                                         </a>
                                     </li>
 
-                                    <!-- <li class="nav-item <?= $this->uri->segment(2) === 'Assign_Doctors' ? 'active' : '' ?>">
-                                        <a href="<?php echo base_url(); ?>Admin/Assign_Doctors" class="nav-link "> <span class="title"> Assign
-                                                Doctors
+                                  <li class="nav-item <?= $this->uri->segment(2) === 'Time_slots' ? 'active' : '' ?>">
+                                        <a href="<?php echo base_url(); ?>Admin/Time_slots" class="nav-link "> <span class="title"> 
+                                                Time Slots
                                             </span>
                                         </a>
-                                    </li> -->
+                                    </li>
 
                                 </ul>
                             </li>

@@ -3730,9 +3730,14 @@ public function update_admin()
 	{
 	    $this->checkLogin(); // Add this line to check login
 
+     // Retrieve all time slots directly in the controller
+	    $query = $this->db->get('time_slots');
+	    $timeSlots = $query->result();
 
+	    // Prepare the time slots data to pass to the view
+	    $data['timeSlots'] = $timeSlots;
 	    
-	    $this->load->view('Backend/admin/internal_doctors/add-internal-doctor');
+	    $this->load->view('Backend/admin/internal_doctors/add-internal-doctor',$data);
 	}
 
 	public function All_InternalDoctors()
@@ -3740,6 +3745,13 @@ public function update_admin()
 	    $this->checkLogin(); // Add this line to check login
 	    $navigators = $this->Doctor_model->getAll_InternalDoctors();
         $data['navigators'] = $navigators;
+
+         // Retrieve all time slots directly in the controller
+	    $query = $this->db->get('time_slots');
+	    $timeSlots = $query->result();
+
+	    // Prepare the time slots data to pass to the view
+	    $data['timeSlots'] = $timeSlots;
       
 	    $this->load->view('Backend/admin/internal_doctors/all-internal-doctors',$data);
 	}
@@ -3747,6 +3759,7 @@ public function update_admin()
 	  public function Save_internal_doctor()
 	{
 	    if ($this->session->userdata('user_login_access') != False) {
+	    	//print_r($_POST);die();
 	        $name = $this->input->post('firstname');
 		    $gender = $this->input->post('gender');
 		    $qualification = $this->input->post('qualification');
@@ -3836,8 +3849,8 @@ public function update_admin()
 				    'hospital_city' => $this->input->post('hospital_city'),
 				    'clinic_area' => $this->input->post('clinic_area'),
 				    'clinic_city' => $this->input->post('clinic_city'),
-				    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
-				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
+				    // 'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    // 'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				);
 
 	            
@@ -3865,8 +3878,8 @@ public function update_admin()
 					    'hospital_city' => $this->input->post('hospital_city'),
 					    'clinic_area' => $this->input->post('clinic_area'),
 					    'clinic_city' => $this->input->post('clinic_city'),
-					    'clinic_to_timing' => $this->input->post('clinic_to_timing'),
-				    'hospital_to_timing' => $this->input->post('hospital_to_timing'),
+					//     'clinic_to_timing' => $this->input->post('clinic_to_timing'),
+				    // 'hospital_to_timing' => $this->input->post('hospital_to_timing'),
 				);
 	      	 
 
@@ -3877,7 +3890,7 @@ public function update_admin()
 	            $success = $this->Doctor_model->save_InternalDoctor($data); //Doctor_model
 
 	            if ($success) {
-	            	$number = $mobileNo;
+	            
 	            	//$this->send_mail_manager($name,$email,$number,$password);
 	                echo json_encode(array('status' => 'success', 'message' =>'Doctor saved successfully'));
 	            } else {
@@ -4034,6 +4047,47 @@ public function update_admin()
 	        // Get the ID parameter from the AJAX request
 	        $id = $this->input->get('id');
 	        $navigator = $this->Doctor_model->get_InternalDoctorByID($id);
+
+	        // Time slot
+	        $time_slot1 = '';
+	        $time_slot2 = '';
+
+	        //timing
+	        if($navigator->timing){
+		    $this->db->where('id', $navigator->timing);
+		    $query = $this->db->get('time_slots');
+		    $timing_timeSlot = $query->row(); 
+            if($timing_timeSlot){
+
+            	 $Start_timestamp = strtotime($timing_timeSlot->start_time);
+             $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+             $end_timestamp = strtotime( $timing_timeSlot->end_time);
+             $end_formattedTime = date('g:i A', $end_timestamp); 
+
+		    $time_slot1 = $Start_formattedTime.' - '.$end_formattedTime;
+
+            }
+		    
+                 
+             }
+		    //clinic_timing
+          if($navigator->clinic_timing){
+		     $this->db->where('id', $navigator->clinic_timing);
+		    $query = $this->db->get('time_slots');
+		    $clinic_timing_timeSlot = $query->row();
+             if($clinic_timing_timeSlot){
+		     $clinic_Start_timestamp = strtotime( $clinic_timing_timeSlot->start_time);
+             $clinic_Start_formattedTime = date('g:i A', $clinic_Start_timestamp); 
+
+             $clinic_end_timestamp = strtotime( $clinic_timing_timeSlot->end_time);
+             $clinic_end_formattedTime = date('g:i A', $clinic_end_timestamp); 
+
+		    $time_slot2 = $clinic_Start_formattedTime.' - '.$clinic_end_formattedTime;
+		   }
+		   }
+              
+
 	        
 	        // Prepare the response data as an array
 	       $response = array(
@@ -4045,7 +4099,8 @@ public function update_admin()
 		    'specialized_in' => $navigator->specialized_in,
 		    'experience' => $navigator->experience,
 		    'address' => $navigator->address,
-		    'timing' => $navigator->timing,
+		    'timing' => $navigator->timing, // timing 1
+		    'time_slot1' => $time_slot1,//$navigator->timing, // timing 1
 		    'fees' => $navigator->fees,
 		    'contact_number' => $navigator->contact_number,
 		    'profile_picture' => $navigator->profile_picture,
@@ -4054,16 +4109,17 @@ public function update_admin()
 		   // 'isActive' => $navigator->isActive,
 
 		     //new
-				    'clinic_name' => $navigator->clinic_name,
-				    'clinic_address' => $navigator->clinic_address,
-				    'clinic_timing' => $navigator->clinic_timing,
-				    'clinic_fees' => $navigator->clinic_fees,
-				     'hospital_area' => $navigator->hospital_area,
-				    'hospital_city' => $navigator->hospital_city,
-				    'clinic_area' =>$navigator->clinic_area,
-				    'clinic_city' => $navigator->clinic_city,
-				    'hospital_to_timing' => $navigator->hospital_to_timing,
-				    'clinic_to_timing' => $navigator->clinic_to_timing,
+		    'clinic_name' => $navigator->clinic_name,
+		    'clinic_address' => $navigator->clinic_address,
+		    'clinic_timing' => $navigator->clinic_timing, // timing 2
+		    'time_slot2' => $time_slot2,//$navigator->clinic_timing, // timing 2
+		    'clinic_fees' => $navigator->clinic_fees,
+		     'hospital_area' => $navigator->hospital_area,
+		    'hospital_city' => $navigator->hospital_city,
+		    'clinic_area' =>$navigator->clinic_area,
+		    'clinic_city' => $navigator->clinic_city,
+		    // 'hospital_to_timing' => $navigator->hospital_to_timing,
+		    // 'clinic_to_timing' => $navigator->clinic_to_timing,
 		);
 	        
 	        // Send the response as JSON
@@ -4154,6 +4210,146 @@ public function update_admin()
 
 
 	         // ------------------------------ Internal Doctors  END ---------------------------------------------------- //
+	         // ------------------------------ Time slots  END ---------------------------------------------------- //
+		 // Time_slots 22/1/24
+			public function Time_slots()
+			{
+			    $this->checkLogin(); // Add this line to check login
+
+                  // Retrieve all time slots directly in the controller
+			    $query = $this->db->get('time_slots');
+			    $timeSlots = $query->result();
+
+			    // Prepare the time slots data to pass to the view
+			    $data['timeSlots'] = $timeSlots;
+						    
+			    $this->load->view('Backend/admin/internal_doctors/time-slots',$data);
+			}
+			
+		    // public function add_time_slot() {
+		    //     // Handle form submission to add a new time slot
+		    //     $data = array(
+		    //         'slot' => $this->input->post('slot'),
+		    //         'start_time' => $this->input->post('start_time'),
+		    //         'end_time' => $this->input->post('end_time')
+		    //     );
+
+		    //     // Insert data into the "time_slots" table
+		    //    $success =  $this->db->insert('time_slots', $data);
+
+		    //   if ($success) {
+	            	
+	        //         echo json_encode(array('status' => 'success', 'message' =>'Data saved successfully'));
+	        //     } else {
+	        //         echo json_encode(array('status' => 'error', 'message' => 'Failed to save data'));
+	        //     }
+		    // }
+			  
+			public function add_time_slot() {
+			    // Handle form submission to add a new time slot
+			    $slot = strtolower($this->input->post('slot'));
+			    $start_time = $this->input->post('start_time');
+			    $end_time = $this->input->post('end_time');
+
+			    // Check if a time slot with the same slot already exists with isActive set to 1
+			    $this->db->where('LOWER(slot)', $slot);
+			    $this->db->where('isActive', 1);
+			    $existingSlot = $this->db->get('time_slots')->row();
+
+			    if ($existingSlot) {
+			        // Slot already exists, return an error
+			        echo json_encode(array('status' => 'error', 'message' => 'Slot already exists '));
+			        return;
+			    }
+
+			    // Check if a time slot with the same start_time and end_time already exists with isActive set to 1
+			    $this->db->where('start_time', $start_time);
+			    $this->db->where('end_time', $end_time);
+			    $this->db->where('isActive', 1);
+			    $existingTimeSlot = $this->db->get('time_slots')->row();
+
+			    if ($existingTimeSlot) {
+			        // Time slot with the same start_time and end_time already exists, return an error
+			        echo json_encode(array('status' => 'error', 'message' => 'Time slot  already exists '));
+			        return;
+			    }
+
+			    // Slot is available, proceed to insert
+			    $data = array(
+			        'slot' => $slot,
+			        'start_time' => $start_time,
+			        'end_time' => $end_time
+			    );
+
+			    // Insert data into the "time_slots" table
+			    $success = $this->db->insert('time_slots', $data);
+
+			    if ($success) {
+			        echo json_encode(array('status' => 'success', 'message' => 'Data saved successfully'));
+			    } else {
+			        echo json_encode(array('status' => 'error', 'message' => 'Failed to save data'));
+			    }
+			}
+
+
+			    public function update_time_slot() {
+		        // Handle form submission to update an existing time slot
+		        $id  =$this->input->post('id');
+		        $data = array(
+		            'slot' => $this->input->post('slot'),
+		            'start_time' => $this->input->post('start_time'),
+		            'end_time' => $this->input->post('end_time')
+		        );
+
+		        // Update data in the "time_slots" table
+		        $this->db->where('id', $id);
+		        $success =   $this->db->update('time_slots', $data);
+
+		        if ($success) {
+	            	
+	                echo json_encode(array('status' => 'success', 'message' =>'Data updated successfully'));
+	            } else {
+	                echo json_encode(array('status' => 'error', 'message' => 'Failed to update data'));
+	            }
+		    }
+
+		    public function delete_time_slot() {
+		    	  $id  =$this->input->post('id');
+		        // Delete a time slot from the "time_slots" table
+		        $this->db->where('id', $id);
+		        $success =   $this->db->delete('time_slots');
+
+		        if ($success) {
+	            	
+	                echo json_encode(array('status' => 'success', 'message' =>'Deleted successfully'));
+	            } else {
+	                echo json_encode(array('status' => 'error', 'message' => 'Failed to delete data'));
+	            }
+
+		      
+		    }
+		    public function getTimeSlotByID() {
+			    // Get the ID parameter from the AJAX request
+			    $id = $this->input->get('id');
+
+			    // Retrieve time slot details directly in the controller
+			    $this->db->where('id', $id);
+			    $query = $this->db->get('time_slots');
+			    $timeSlot = $query->row();
+
+			    // Prepare the response data as an array
+			    $response = array(
+			        'id' => $timeSlot->id,
+			        'slot' => $timeSlot->slot,
+			        'start_time' => $timeSlot->start_time,
+			        'end_time' => $timeSlot->end_time,
+			    );
+
+			    // Send the response as JSON
+			    echo json_encode($response);
+			}
+
+	         // ------------------------------ Time slots  END ---------------------------------------------------- //
 
 	         // ------------------------------ ID CARD ---------------------------------------------------- //
 	     public function generate_IdCard()

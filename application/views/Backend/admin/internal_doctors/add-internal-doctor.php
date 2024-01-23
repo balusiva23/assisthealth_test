@@ -151,14 +151,59 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="hospital_city" id="hospital_city" data-required="1"
-                                                        placeholder="Enter  City Name " class="form-control input-height" required />
+                                                    <!-- <input type="text" name="hospital_city" id="hospital_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height" required /> -->
+                                                        <select class="form-control input-height"  name="hospital_city" id="hospital_city" required>
+                                                              <option value="Bangalore">Bangalore</option>
+                                                              <option value="Mysore">Mysore</option>
+                                                              <option value="Tumkur">Tumkur</option>
+                                                              <option value="Bellary">Bellary</option>
+                                                              <option value="Hyderabad">Hyderabad</option>
+                                                              <option value="Chennai">Chennai</option>
+                                                              <option value="Nellore">Nellore</option>
+                                                              <option value="Anantapur">Anantapur</option>
+                                                              <option value="Shivamogga">Shivamogga</option>
+                                                              <option value="Chikkamagaluru">Chikkamagaluru</option>
+                                                              <option value="Hassan">Hassan</option>
+                                                              <option value="Chitradurga">Chitradurga</option>
+                                                            </select>
                                                 </div>
                                             </div>  
                                             
+                                              <div class="form-group row">
+                                                <label class="control-label col-md-3">Consultation Timings slots
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="timing" id="timing"  required>
+                                                        <option value="">Select...</option>
+                                                        <?php foreach ($timeSlots as $key => $value) { 
+                                                                $Start_timestamp = strtotime( $value->start_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+                                                                //ENd
+
+                                                                $end_timestamp = strtotime( $value->end_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $end_formattedTime = date('g:i A', $end_timestamp);
+
+                                                            ?>
+                                                              <option value="<?php echo  $value->id ?>"><?php echo  $value->slot ?> ( <?php  echo $Start_formattedTime.' - '.$end_formattedTime ?>) </option>
+                                                      <?php  } ?>
+                                                       
+                                                    
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                
+                                            
                                           
-                                         
-                                           <div class="form-group row">
+                                          <!-- old -->
+                                          <!-- <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> * </span>
                                                 </label>
@@ -173,7 +218,10 @@
                                                     <input type="time" name="hospital_to_timing" id="hospital_to_timing" data-required="1"
                                                         placeholder="Enter  Consultation Timings " class="form-control input-height" required />
                                                 </div>
-                                            </div>
+                                            </div> -->
+
+
+                                            
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3"> Consultation Fees 
                                                     <span class="required"> * </span>
@@ -228,14 +276,60 @@
                                                     <span class="required"> </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="clinic_city" id="clinic_city" data-required="1"
-                                                        placeholder="Enter  City Name " class="form-control input-height"  />
+                                                   <!--  <input type="text" name="clinic_city" id="clinic_city" data-required="1"
+                                                        placeholder="Enter  City Name " class="form-control input-height"  /> -->
+                                                          <select class="form-control input-height"  name="clinic_city" id="clinic_city" required>
+                                                              <option value="Bangalore">Bangalore</option>
+                                                              <option value="Mysore">Mysore</option>
+                                                              <option value="Tumkur">Tumkur</option>
+                                                              <option value="Bellary">Bellary</option>
+                                                              <option value="Hyderabad">Hyderabad</option>
+                                                              <option value="Chennai">Chennai</option>
+                                                              <option value="Nellore">Nellore</option>
+                                                              <option value="Anantapur">Anantapur</option>
+                                                              <option value="Shivamogga">Shivamogga</option>
+                                                              <option value="Chikkamagaluru">Chikkamagaluru</option>
+                                                              <option value="Hassan">Hassan</option>
+                                                              <option value="Chitradurga">Chitradurga</option>
+                                                            </select>
                                                 </div>
-                                            </div>  
+                                            </div> 
+
+
+
+                                              <div class="form-group row">
+                                                <label class="control-label col-md-3">Consultation Timings slots
+                                                    <span class="required"> </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="clinic_timing" id="clinic_timing"  >
+                                                        <!-- clinic_timing -->
+                                                        <option value="">Select...</option>
+                                                        <?php foreach ($timeSlots as $key => $value) { 
+                                                                $Start_timestamp = strtotime( $value->start_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $Start_formattedTime = date('g:i A', $Start_timestamp); 
+
+                                                                //ENd
+
+                                                                $end_timestamp = strtotime( $value->end_time);
+
+                                                                // Format the timestamp in your desired format
+                                                                $end_formattedTime = date('g:i A', $end_timestamp);
+
+                                                            ?>
+                                                              <option value="<?php echo  $value->id ?>"><?php echo  $value->slot ?> ( <?php  echo $Start_formattedTime.' - '.$end_formattedTime ?>) </option>
+                                                      <?php  } ?>
+                                                       
+                                                    
+                                                    </select>
+                                                </div>
+                                            </div> 
                                             
                                           
                                         
-                                             <div class="form-group row">
+                                             <!-- <div class="form-group row">
                                                 <label class="control-label col-md-3">  Consultation Timings 
                                                     <span class="required"> </span>
                                                 </label>
@@ -250,7 +344,10 @@
                                                     <input type="time" name="clinic_to_timing" id="clinic_to_timing" data-required="1"
                                                         placeholder="Enter  Consultation Timings " class="form-control input-height"  />
                                                 </div>
-                                            </div>
+                                            </div> -->
+
+
+
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3"> Consultation Fees 
                                                     <span class="required">  </span>
