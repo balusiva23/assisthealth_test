@@ -444,7 +444,7 @@ function make_query($filters)
                 $output .= '
                     <div class="col-md-4">
                         <div class="card" style="">
-                            <div class="card-body no-padding">
+                            <div class="card-body no-padding" style="height: 320px;">
                                 <div class="doctor-profile">
                                     <img src="' . base_url() . '/assets/uploads/internal_doctors/' . $doctor->profile_picture . '" class="doctor-pic" alt="" style="max-height: 112px;">
                                     <div class="profile-usertitle">
