@@ -311,8 +311,8 @@
                                         <div class="form-group">
                                             <label for="simpleFormEmail">Diagnosis  Date </label>
                                             <input type="date"  id="" class="form-control" name="medical_condition_date[]"
-                                                placeholder="Enter Date" value="<?= date('Y-m-d', strtotime($previous_medical->diagnosis_date)) ?>"> 
-                                                <!--  <?=  date('Y-m-d',strtotime($previous_medical->diagnosis_date));   ?>  -->
+                                                placeholder="Enter Date" value=" <?= ($previous_medical->diagnosis_date) ?  date('Y-m-d', strtotime($previous_medical->diagnosis_date)) : ''?>"> 
+                                           
                                         </div>
                                     </div>
                                         <div class="col-md-3 col-sm-3">
@@ -391,7 +391,7 @@
                                         <div class="form-group">
                                             <label for="simpleFormEmail">  Date</label>
                                             <input type="date"  id="" class="form-control" name="surgeries_date[]"
-                                                placeholder="Enter Date" value="<?= date('Y-m-d', strtotime($surgeries->procedure_date)) ?>">
+                                                placeholder="Enter Date" value=" <?= ($surgeries->procedure_date) ?  date('Y-m-d', strtotime($surgeries->procedure_date)) : ''?>">
                                         </div>
                                     </div>
                                         <div class="col-md-3 col-sm-3">
@@ -693,7 +693,7 @@
                                         <div class="form-group">
                                             <label for="simpleFormEmail">  Date Received</label>
                                             <input type="date"  id=""  class="form-control" name="vaccination_date[]"
-                                                placeholder="Enter Date" value="<?= date('Y-m-d', strtotime($immunization_historys->vaccination_date)) ?>">
+                                                placeholder="Enter Date" value="<?= ($immunization_historys->vaccination_date) ?  date('Y-m-d', strtotime($immunization_historys->vaccination_date)) : ''?> ">
                                         </div>
                                         </div>
                                     <div class="col-md-1 col-sm-1 mt-4">

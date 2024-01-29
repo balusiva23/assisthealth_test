@@ -1894,13 +1894,7 @@ class Admin extends CI_Controller {
 		        'member_id' => $member_id
 		    );
 		   $update = $this->Admin_model->update_medical_history($existing_medical_history->id, $medical_history_data);
-		//    echo 'medical_history_data';
-        //   print_r($medical_history_data);
-		//    echo 'update';
-        //   print_r($update);
-        
-		//   echo 'post';
-        //   print_r($existing_medical_history);
+	
 		  
 		    // Delete existing child records for the member
 		    $this->Admin_model->delete_previous_medical_conditions_by_medical_history_id($existing_medical_history->id);
@@ -1926,12 +1920,12 @@ class Admin extends CI_Controller {
 		    // Save data for each record in the Previous Medical Conditions section
 		    if (!empty($medical_conditions)) {
 		        foreach ($medical_conditions as $index => $condition) {
-		            if (!empty($condition) && !empty($medical_condition_dates[$index])) {
+		            if (!empty($condition) || !empty($medical_condition_dates[$index])) {
 		                $condition_data = array(
 		                    'medical_history_id' => $existing_medical_history->id,
 		                    'member_id' => $member_id,
 		                    'condition_name' => $condition,
-		                    'diagnosis_date' => $medical_condition_dates[$index],
+		                    'diagnosis_date' => ($medical_condition_dates[$index])  ? $medical_condition_dates[$index] : '',
 		                    'treatment_received' => $treatment_received[$index]
 		                );
 		                $this->Admin_model->insert_previous_medical_condition($condition_data);
@@ -1947,12 +1941,12 @@ class Admin extends CI_Controller {
             // Save data for each record in the Surgeries or Procedures section
              if (!empty($surgeries)) {
             foreach ($surgeries as $index => $surgery) {
-             if (!empty($surgery) && !empty($surgeries_dates[$index]) && !empty($surgeon_names[$index])) {
+             if (!empty($surgery) || !empty($surgeries_dates[$index]) || !empty($surgeon_names[$index])) {
                 $surgery_data = array(
                     'medical_history_id' => $existing_medical_history->id,
                     'member_id' => $member_id,
                     'procedure_name' => $surgery,
-                    'procedure_date' => $surgeries_dates[$index],
+                    'procedure_date' =>($surgeries_dates[$index])  ? $surgeries_dates[$index] : '',// $surgeries_dates[$index],
                     'surgeon' => $surgeon_names[$index]
                 );
                 $this->Admin_model->insert_surgery_procedure($surgery_data);
@@ -1989,7 +1983,7 @@ class Admin extends CI_Controller {
 	            // Save data for each record in the Current Medications section
 	             if (!empty($medication_names)) {
 	            foreach ($medication_names as $index => $medication_name) {
-	            	   if (!empty($medication_name) && !empty($dosages[$index]) && !empty($frequencies[$index])) {
+	            	   if (!empty($medication_name) || !empty($dosages[$index]) || !empty($frequencies[$index])) {
 	                $medication_data = array(
 	                    'medical_history_id' => $existing_medical_history->id,
 	                    'member_id' => $member_id,
@@ -2009,7 +2003,7 @@ class Admin extends CI_Controller {
 	            // Save data for each record in the Family Medical History section
 	             if (!empty($family_conditions)) {
 	            foreach ($family_conditions as $index => $condition) {
-	            	   if (!empty($condition) && !empty($relationship_to_patient[$index])) {
+	            	   if (!empty($condition) || !empty($relationship_to_patient[$index])) {
 	                $family_data = array(
 	                    'medical_history_id' => $existing_medical_history->id,
 	                    'member_id' => $member_id,
@@ -2028,12 +2022,12 @@ class Admin extends CI_Controller {
 	            // Save data for each record in the Immunization History section
 	             if (!empty($vaccinations)) {
 	            foreach ($vaccinations as $index => $vaccination) {
-	            	     if (!empty($vaccination) && !empty($vaccination_dates[$index])) {
+	            	     if (!empty($vaccination) || !empty($vaccination_dates[$index])) {
 	                $immunization_data = array(
 	                    'medical_history_id' => $existing_medical_history->id,
 	                    'member_id' => $member_id,
 	                    'vaccination' => $vaccination,
-	                    'vaccination_date' => $vaccination_dates[$index]
+	                    'vaccination_date' => ($vaccination_dates[$index])  ? $vaccination_dates[$index] : '', //$vaccination_dates[$index]
 	                );
 	                $this->Admin_model->insert_immunization($immunization_data);
 	            }
@@ -2064,7 +2058,7 @@ class Admin extends CI_Controller {
 	            // Save data for each record in the Current Symptoms or Concerns section
 	             if (!empty($symptoms)) {
 	            foreach ($symptoms as $index => $symptom) {
-	            	  if (!empty($symptom) && !empty($concerns[$index])) {
+	            	  if (!empty($symptom) || !empty($concerns[$index])) {
 	                $symptom_data = array(
 	                    'medical_history_id' => $existing_medical_history->id,
 	                    'member_id' => $member_id,
@@ -2112,12 +2106,12 @@ class Admin extends CI_Controller {
             // Save data for each record in the Previous Medical Conditions section
              if (!empty($medical_conditions)) {
             foreach ($medical_conditions as $index => $condition) {
-            if (!empty($condition) && !empty($medical_condition_dates[$index])) {
+            if (!empty($condition) || !empty($medical_condition_dates[$index])) {
                 $condition_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,
                     'condition_name' => $condition,
-                    'diagnosis_date' => $medical_condition_dates[$index],
+                    'diagnosis_date' =>  ($medical_condition_dates[$index])  ? $medical_condition_dates[$index] : '',//$medical_condition_dates[$index],
                     'treatment_received' => $treatment_received[$index]
                 );
                 $this->Admin_model->insert_previous_medical_condition($condition_data);
@@ -2133,12 +2127,12 @@ class Admin extends CI_Controller {
             // Save data for each record in the Surgeries or Procedures section
              if (!empty($surgeries)) {
             foreach ($surgeries as $index => $surgery) {
-             if (!empty($surgery) && !empty($surgeries_dates[$index]) && !empty($surgeon_names[$index])) {
+             if (!empty($surgery) || !empty($surgeries_dates[$index]) || !empty($surgeon_names[$index])) {
                 $surgery_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,
                     'procedure_name' => $surgery,
-                    'procedure_date' => $surgeries_dates[$index],
+                    'procedure_date' => ($surgeries_dates[$index])  ? $surgeries_dates[$index] : '',// $surgeries_dates[$index],
                     'surgeon' => $surgeon_names[$index]
                 );
                 $this->Admin_model->insert_surgery_procedure($surgery_data);
@@ -2175,7 +2169,7 @@ class Admin extends CI_Controller {
             // Save data for each record in the Current Medications section
              if (!empty($medication_names)) {
             foreach ($medication_names as $index => $medication_name) {
-            	   if (!empty($medication_name) && !empty($dosages[$index]) && !empty($frequencies[$index])) {
+            	   if (!empty($medication_name) || !empty($dosages[$index]) || !empty($frequencies[$index])) {
                 $medication_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,
@@ -2195,7 +2189,7 @@ class Admin extends CI_Controller {
             // Save data for each record in the Family Medical History section
              if (!empty($family_conditions)) {
             foreach ($family_conditions as $index => $condition) {
-            	   if (!empty($condition) && !empty($relationship_to_patient[$index])) {
+            	   if (!empty($condition) || !empty($relationship_to_patient[$index])) {
                 $family_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,
@@ -2214,12 +2208,12 @@ class Admin extends CI_Controller {
             // Save data for each record in the Immunization History section
              if (!empty($vaccinations)) {
             foreach ($vaccinations as $index => $vaccination) {
-            	     if (!empty($vaccination) && !empty($vaccination_dates[$index])) {
+            	     if (!empty($vaccination) || !empty($vaccination_dates[$index])) {
                 $immunization_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,
                     'vaccination' => $vaccination,
-                    'vaccination_date' => $vaccination_dates[$index]
+                    'vaccination_date' =>  ($vaccination_dates[$index])  ? $vaccination_dates[$index] : ''// $vaccination_dates[$index]
                 );
                 $this->Admin_model->insert_immunization($immunization_data);
             }
@@ -2250,7 +2244,7 @@ class Admin extends CI_Controller {
             // Save data for each record in the Current Symptoms or Concerns section
              if (!empty($symptoms)) {
             foreach ($symptoms as $index => $symptom) {
-            	  if (!empty($symptom) && !empty($concerns[$index])) {
+            	  if (!empty($symptom) || !empty($concerns[$index])) {
                 $symptom_data = array(
                     'medical_history_id' => $medical_history_id,
                     'member_id' => $member_id,

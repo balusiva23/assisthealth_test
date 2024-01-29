@@ -319,7 +319,7 @@
                                                                             <tr>
                                                                                 <td> <?=$previousCount?> </td>
                                                                                 <td> <?= $previous_medical->condition_name ?> </td>
-                                                                                <td> <?= date('Y-m-d', strtotime($previous_medical->diagnosis_date)) ?> </td>
+                                                                                <td> <?= ($previous_medical->diagnosis_date) ?  date('Y-m-d', strtotime($previous_medical->diagnosis_date)) : ''?> </td>
                                                                                 <td> <?= $previous_medical->treatment_received ?> </td>
                                                                             </tr>
                                                                             <?php 
@@ -371,7 +371,8 @@
                                                                         <tr>
                                                                             <td> <?=$surgeries_procedures_count?> </td>
                                                                             <td> <?= $surgeries->procedure_name ?> </td>
-                                                                            <td> <?= date('Y-m-d', strtotime($surgeries->procedure_date)) ?></td>
+                                                                     
+                                                                              <td> <?= ($surgeries->procedure_date) ?  date('Y-m-d', strtotime($surgeries->procedure_date)) : ''?> </td>
                                                                             <td> <?= $surgeries->surgeon ?></td>
                                                                         </tr>
                                                                              <?php 
@@ -578,7 +579,8 @@
                                                         <tr>
                                                             <td> <?=$immunization_count?> </td>
                                                             <td> <?= $immunization_historys->vaccination ?> </td>
-                                                            <td> <?= date('Y-m-d', strtotime($immunization_historys->vaccination_date)) ?> </td>
+                                                            
+                                                              <td> <?= ($immunization_historys->vaccination_date) ?  date('Y-m-d', strtotime($immunization_historys->vaccination_date)) : ''?> </td>
                                                          
                                                         </tr>
                                                          <?php $immunization_count++; }
